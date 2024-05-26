@@ -1,0 +1,98 @@
+\section{Mikolov}
+Proposta de duas novas arquiteturas de modelo para calcular representações vetoriais contínuas de palavras a partir de grandes conjuntos de dados. A qualidade dessas representações é avaliada em uma tarefa de similaridade de palavras e comparada com as técnicas anteriormente mais eficazes baseadas em diferentes tipos de redes neurais, observando melhorias significativas na precisão com custo computacional muito menor. Conseguiu-se aprender vetores de palavras de alta qualidade de um conjunto de dados de 1,6 bilhão de palavras em menos de um dia. As representações vetoriais fornecidas alcançaram desempenho de ponta em medições de similaridades sintáticas e semânticas de palavras no conjunto de teste. Muitos sistemas de Processamento de Linguagem Natural (PLN) atuais tratam palavras como unidades atômicas sem noção de similaridade entre elas, mas técnicas mais avançadas como representações distribuídas de palavras mostraram ser mais eficazes, especialmente em grandes conjuntos de dados. O objetivo principal do artigo é introduzir técnicas para aprender vetores de palavras de alta qualidade a partir de conjuntos de dados muito grandes, ultrapassando as capacidades de arquiteturas anteriormente propostas. Utilização de técnicas recentes para medir a qualidade das representações vetoriais, enfocando na maximização da acuracidade das operações vetoriais e preservação de regularidades lineares entre palavras. A concepção de um novo conjunto de testes compreensivo para medir regularidades tanto sintáticas quanto semânticas e a discussão sobre como o tempo de treinamento e acuracidade dependem da dimensionalidade dos vetores de palavras e da quantidade de dados de treinamento.
+
+Os pontos-chave para citação nas seções "Goals of the Paper" e "1.2 Previous Work" podem ser organizados da seguinte maneira:
+
+O objetivo principal deste artigo é introduzir técnicas para a aprendizagem de vetores de palavras de alta qualidade a partir de grandes conjuntos de dados com bilhões de palavras e vocabulário com milhões de palavras. Até onde os autores sabem, nenhuma das arquiteturas propostas anteriormente foi treinada com sucesso em mais do que algumas centenas de milhões de palavras, com uma modesta dimensionalidade dos vetores de palavras entre 50 - 100.
+
+Os autores utilizam técnicas recentemente propostas para medir a qualidade das representações vetoriais resultantes, com a expectativa de que palavras semelhantes tendem a estar próximas umas das outras e que palavras podem ter múltiplos graus de similaridade. Esse fenômeno foi observado anteriormente no contexto de idiomas inflexivos.
+
+Eles descobriram que a similaridade das representações de palavras vai além de regularidades sintáticas simples, exemplificando com a operação vetorial entre as palavras "King", "Man" e "Woman" resultando em uma representação vetorial próxima à da palavra "Queen".
+
+Buscam maximizar a acuracidade dessas operações vetoriais através do desenvolvimento de novas arquiteturas de modelo que preservam as regularidades lineares entre as palavras, e projetam um novo conjunto de testes para medir tanto regularidades sintáticas quanto semânticas.
+
+A representação de palavras como vetores contínuos tem uma longa história, e um modelo popular para estimar o modelo de linguagem de rede neural (NNLM) foi proposto, onde uma rede neural feedforward com uma camada de projeção linear e uma camada oculta não-linear foi usada para aprender conjuntamente a representação vetorial de palavra e um modelo de linguagem estatístico.
+
+Outra arquitetura interessante de NNLM apresentada permite que os vetores de palavras sejam primeiro aprendidos usando uma rede neural com uma única camada oculta, antes de serem usados para treinar o NNLM, simplificando assim o processo de aprendizagem dos vetores de palavras.
+
+Foi mostrado posteriormente que os vetores de palavras podem ser usados para melhorar e simplificar significativamente muitas aplicações de PLN, com a estimação dos vetores de palavras sendo realizada usando diferentes arquiteturas de modelo e treinadas em vários corpora.
+
+Os autores destacam a importância das representações vetoriais contínuas e buscam avançar na qualidade e eficiência do treinamento dessas representações, introduzindo técnicas novas e comparando com trabalhos anteriores na área.
+
+Aqui estão os pontos importantes para citação extraídos da seção "Model Architectures":
+
+Discussão sobre diferentes modelos propostos para estimar representações contínuas de palavras, incluindo Latent Semantic Analysis (LSA) e Latent Dirichlet Allocation (LDA), com foco em representações distribuídas de palavras aprendidas por redes neurais devido ao seu desempenho superior em preservar regularidades lineares entre palavras.
+
+Definição de complexidade computacional de um modelo como o número de parâmetros que precisam ser acessados para treinar completamente o modelo, com o objetivo de maximizar a acuracidade enquanto minimiza a complexidade computacional.
+
+A complexidade de treinamento de todos os modelos subsequentes é proporcional a \(O = E \times T \times Q\), onde \(E\) é o número de épocas de treinamento, \(T\) é o número de palavras no conjunto de treinamento e \(Q\) é definido para cada arquitetura de modelo.
+
+Descrição do modelo Feedforward Neural Net Language Model (NNLM), que consiste em camadas de entrada, projeção, oculta e saída. A complexidade computacional por exemplo de treinamento é dada por \(Q = N \times D + N \times D \times H + H \times V\), onde o termo dominante é \(H \times V\). Soluções práticas são propostas para reduzir esta complexidade, como o uso de softmax hierárquico e representações de árvore binária do vocabulário.
+
+Explicação do modelo Recurrent Neural Net Language Model (RNNLM) que foi proposto para superar certas limitações do NNLM feedforward, como a necessidade de especificar o comprimento do contexto. A complexidade por exemplo de treinamento do modelo RNN é dada por \(Q = H \times H + H \times V\), com a complexidade sendo reduzida eficientemente usando softmax hierárquico.
+
+Introdução ao treinamento paralelo de redes neurais em grandes conjuntos de dados usando o framework DistBelief, permitindo a execução de múltiplas réplicas do mesmo modelo em paralelo com sincronização de atualizações de gradiente através de um servidor centralizado. O treinamento paralelo emprega o método de mini-batch asynchronous gradient descent com um procedimento de taxa de aprendizado adaptativa chamado Adagrad.
+
+Esses pontos refletem a exploração e a comparação de diferentes arquiteturas de modelos para estimar representações contínuas de palavras, bem como a implementação de estratégias para treinar esses modelos de maneira eficiente em grandes conjuntos de dados.
+Nesta seção, são propostas duas novas arquiteturas de modelos para aprender representações distribuídas de palavras, com o intuito de minimizar a complexidade computacional. A observação principal da seção anterior é que a maioria da complexidade é causada pela camada oculta não-linear no modelo. Apesar dessa característica tornar as redes neurais atraentes, decidiram explorar modelos mais simples, que podem não representar os dados tão precisamente quanto as redes neurais, mas que possivelmente podem ser treinados em muito mais dados de forma eficiente.
+
+As novas arquiteturas seguem diretamente as propostas em trabalhos anteriores, onde foi descoberto que o modelo de linguagem de rede neural pode ser treinado com sucesso em duas etapas: primeiro, vetores de palavras contínuos são aprendidos usando um modelo simples, e depois o NNLM de N-grama é treinado com base nessas representações distribuídas de palavras.
+
+3.1 Modelo Continuous Bag-of-Words (CBOW)
+- A primeira arquitetura proposta é semelhante ao NNLM feedforward, porém sem a camada oculta não-linear, e a camada de projeção é compartilhada para todas as palavras.
+- Este modelo é chamado de modelo bag-of-words, pois a ordem das palavras no histórico não influencia a projeção.
+- Além das palavras do histórico, palavras futuras também são utilizadas. A melhor performance foi obtida ao construir um classificador log-linear com quatro palavras futuras e quatro históricas na entrada, com o critério de treinamento sendo classificar corretamente a palavra atual.
+- A complexidade de treinamento é \(Q = N \times D + D \times \log_2(V)\).
+
+3.2 Modelo Continuous Skip-gram
+- A segunda arquitetura é similar ao CBOW, mas tenta maximizar a classificação de uma palavra com base em outra palavra na mesma sentença, ao invés de prever a palavra atual com base no contexto.
+- Cada palavra atual é usada como entrada para um classificador log-linear com camada de projeção contínua, prevendo palavras dentro de um certo intervalo antes e depois da palavra atual.
+- A complexidade de treinamento desta arquitetura é proporcional a \(Q = C \times (D + D \times \log_2(V))\), onde \(C\) é a distância máxima das palavras.
+
+Figura 1: Novas arquiteturas de modelo
+- As arquiteturas CBOW e Skip-gram são ilustradas, onde o CBOW prevê a palavra atual com base no contexto, e o Skip-gram prevê palavras circundantes dada a palavra atual.
+
+Esses pontos destacam as novas arquiteturas de modelos propostas para minimizar a complexidade computacional ao aprender representações distribuídas de palavras, bem como as especificidades e diferenças entre os modelos CBOW e Skip-gram. 
+Na seção de resultados, a qualidade das diferentes versões de vetores de palavras é comparada, muitas vezes usando uma tabela que mostra palavras e suas palavras mais similares. Um desafio maior é apresentado ao submeter esses vetores a tarefas de similaridade mais complexas. As observações apontam para diferentes tipos de similaridades entre palavras, como semelhança semântica e sintática. Um método interessante explorado é a realização de operações algébricas simples com a representação vetorial de palavras para responder perguntas sobre relacionamentos entre palavras.
+
+1. **Operações Algébricas com Vetores de Palavras**:
+   - Um exemplo é dado onde a operação \( \text{vector}(\text{"biggest"}) - \text{vector}(\text{"big"}) + \text{vector}(\text{"small"}) \) é usada para encontrar uma palavra que se relaciona com "small" da mesma maneira que "biggest" se relaciona com "big".
+
+2. **Relacionamentos Semânticos e Sintáticos**:
+   - Quando vetores de palavras de alta dimensão são treinados em grandes quantidades de dados, podem ser utilizados para responder questões de relacionamentos semânticos muito sutis entre palavras, como relacionamentos entre cidades e países.
+
+3. **Avaliação de Vetores de Palavras**:
+   - Um conjunto de testes abrangente contendo questões semânticas e sintáticas foi definido para avaliar a qualidade dos vetores de palavras. Questões como "grande - maior" e "pequeno - menor" são exemplos de tipos de relacionamentos examinados.
+   - A precisão é avaliada em termos de encontrar a palavra correta usando o método vetorial descrito, e sinônimos são contados como erros.
+
+4. **Comparação de Arquiteturas de Modelo**:
+   - Diferentes arquiteturas foram comparadas usando a mesma dimensão de vetores de palavras e os mesmos dados de treinamento. CBOW e Skip-gram apresentaram desempenho significativamente bom, com Skip-gram se saindo ligeiramente pior nas tarefas sintáticas, mas muito melhor nas semânticas.
+
+5. **Treinamento em Larga Escala**:
+   - Modelos foram treinados em um framework distribuído chamado DistBelief, e os resultados mostram que o Skip-gram com vetores de 1000 dimensões apresentou uma boa precisão tanto em questões semânticas quanto sintáticas.
+
+6. **Desafio de Completamento de Sentença da Microsoft Research**:
+   - O desafio envolve selecionar a palavra mais coerente que falta em uma sentença, dado uma lista de cinco escolhas razoáveis. Uma combinação do modelo Skip-gram com RNNLMs alcançou uma nova precisão recorde de 58,9\%.
+
+Esses pontos destacam as principais descobertas e análises realizadas na seção de resultados do artigo, incluindo a eficácia de diferentes arquiteturas de modelos, a utilidade de vetores de palavras em alta dimensão, e como os vetores de palavras podem ser utilizados para decifrar relacionamentos semânticos e sintáticos complexos entre palavras. 
+Na seção "Examples of the Learned Relationships", são apresentados exemplos que ilustram o tipo de relacionamentos que os modelos foram capazes de aprender através do treinamento com vetores de palavras. Através de operações vetoriais, como subtração e adição, o modelo pode identificar relações semânticas e sintáticas entre palavras e contextos diversos. Algumas observações notáveis incluem:
+
+1. **Operações Vetoriais para Relacionamentos**:
+   - A abordagem utilizada para definir um relacionamento envolve subtrair dois vetores de palavras e adicionar o resultado a outra palavra. Por exemplo, a operação Paris - França + Itália resulta em Roma.
+
+2. **Exemplos de Relacionamentos Aprendidos**:
+   - São apresentados diversos exemplos que mostram o tipo de relacionamentos que os modelos aprenderam, como relações entre países e capitais, relações de tamanho (big - bigger), relações de localização (Miami - Florida), entre outros.
+
+3. **Acuracidade e Melhorias Potenciais**:
+   - A acuracidade mostrada é bastante satisfatória, mas ainda há espaço para melhorias. Sugere-se que vetores de palavras treinados em conjuntos de dados ainda maiores e com maior dimensionalidade possam apresentar desempenho significativamente melhor.
+   - A acuracidade pode ser melhorada fornecendo mais de um exemplo do relacionamento. Ao usar dez exemplos em vez de um para formar o vetor de relacionamento, observou-se uma melhoria na acuracidade dos modelos.
+
+4. **Aplicações Diversas**:
+   - A seção também discute a aplicação das operações vetoriais para resolver diferentes tarefas, como selecionar palavras fora da lista, um tipo popular de problema em certos testes de inteligência humana.
+
+5. **Conclusão e Trabalho Futuro**:
+   - O papel conclui que é possível treinar vetores de palavras de alta qualidade usando arquiteturas de modelos simples, e antecipa a possibilidade de treinar modelos CBOW e Skip-gram em corpora com um trilhão de palavras usando o framework distribuído DistBelief.
+   - Além disso, antecipa-se que vetores de palavras de alta qualidade se tornarão um componente importante para futuras aplicações de PNL.
+   - No trabalho de acompanhamento, após a versão inicial do artigo, foi publicado código em C++ para computar os vetores de palavras, usando ambas as arquiteturas, com uma velocidade de treinamento significativamente maior que a relatada anteriormente.
+
+Essa seção do artigo demonstra o poder e o potencial dos vetores de palavras para capturar e quantificar relacionamentos semânticos e sintáticos entre palavras, bem como sugere caminhos para futuras investigações e melhorias no campo. 

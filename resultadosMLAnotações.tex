@@ -1,0 +1,41 @@
+Resultados e observações obtidas até agora
+
+
+Avaliação do tamanho da população
+para avaliação de qualidade é possível utilizar 5\% ou aproximadamente 13000 amostras
+
+para KNN quanto mais amostras melhor o resultados.  Porém resultados demonstram-se comparáveis pela variação da acurácia a partir de 3\%.
+
+Regressão Logística:
+
+Quanto mais amostras melhor o aprendizado.  A variância abaixou de 1\% a partir de 7\% das amostras
+A variância acima de \2\% fica inferior a 2\%\
+Tempo de Execução:  Função Quadrática do tamanho da amostra.
+
+Decision Tree
+
+1 avaliação.
+Utilizando parâmetros gerais.
+critério e split
+critério gini levou a melhor significativamente.
+Já random é ligeiramente melhor, mas com um tempo médio inferior.  Logo a primeira escolha é.
+gini + random.
+
+O max\_depth piora significativamente a capacidade do modelo.
+Deve-se utilizar None.
+Por outro lado o min\_samples parece melhorar a capaciade de generalização de forma a um valor alto melhorar o f1score sem piorar o desempenho global acurácia e ainda melhorando a performance.
+
+
+min\_samples\_leaf:  Valor 1 domina praticamente em todos os cenários.  e tempo de execucao quase similar.
+
+max\_feature:  Nitidamente a retirada de features retira o poder de informação.
+log2 e sqrt elimina muito e deprecia a qualidade.
+0.5 reduz mas não significativamente.
+Sem extração obtém o melhor resultado mas com aumento do tempo.
+
+class\_weight: em todos os cenários sem peso é melhor e mais rápido.  Sendo a escolha para avaliação.
+
+min\_samples\_split:  O melhor valor é 20, reduz a profundidade, aumenta a acurácia, aumenta o f1score e reduz o tempo de processamento.
+
+
+

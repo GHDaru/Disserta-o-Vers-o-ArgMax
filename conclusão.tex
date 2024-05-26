@@ -1,0 +1,18 @@
+\chapter{Conclusão}
+% \section*{Conclusões e sugestões para trabalhos futuros}
+
+
+O texto tem como objetivo construir uma referência de acurácia para o conjunto de dados específico que contém descrições de produtos em Português. Os resultados mostram que o uso de algoritmos de classificação de texto para tarefas de classificação de texto curto em descrições de produtos em Português é uma maneira eficiente.
+
+
+O pipeline simples de pré-processamento (minúsculas, remoção de ruídos e tokenização unigrama por espaço), um saco de palavras e um algoritmo resultam em um método viável e rápido para classificar descrições de produtos.
+
+Em comparação com diferentes métodos, o aprendizado de máquina apresenta os melhores valores para acurácia simples sobre métodos de recuperação de informações baseados em termos contados ou ponderados. Confirmando dados da literatura, as regressões logísticas demonstram o melhor desempenho sobre a acurácia e os melhores parâmetros encontrados foram C igual a 100, solver igual a sage, sem peso de classe e sem penalidade. Máquinas de vetores de suporte demonstraram um resultado melhorado sobre algoritmos de recuperação de informações e não superam a regressão logística. A melhor combinação de hiperparâmetros foi C igual a 100, kernel igual a sigmóide e peso de classe igual a balanceado.
+
+
+Entre os métodos de recuperação de informações, argmaxtfidf e argmaxtfidf obtêm resultados semelhantes e argmaxtf obtém o pior resultado.
+
+
+A validação cruzada com quatro dobras e mil amostras demonstra viabilidade para encontrar o melhor hiperparâmetro. E a validação cruzada com 30 dobras apresenta uma boa estatística e um baixo desvio para determinar, em média, o melhor algoritmo.
+
+Como sugestão para trabalhos futuros, sugere-se expandir as técnicas de pré-processamento, como adicionar TAGS, limpar e nomear entidades e usar outras técnicas de incorporação de palavras, como tfidf, tfnorm, word2vec, LDA e FastText. Tokenizar usando bigrama ou skip-gram, tratar palavras fora do vocabulário e aplicar técnicas de seleção variável, como Lasso. Aplicar técnicas de redução de dimensionalidade, como PCA. Aplicar outras técnicas de aprendizado de máquina não apresentadas aqui e, finalmente, aplicar técnicas de balanceamento de amostras.

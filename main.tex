@@ -1,0 +1,82 @@
+\documentclass[a4paper,12pt]{report}
+% \usepackage[table]{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{emoji}
+\usetikzlibrary{arrows.meta, positioning, shapes}
+\usepackage{amsmath}
+\usepackage{tabularx} % Inclua isso no preâmbulo do seu documento
+\usepackage{makecell}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{multirow}
+\usetikzlibrary{shapes.geometric, arrows, shadows, trees}
+\tikzstyle{segment} = [rectangle, rounded corners, text centered, draw=black, fill=green!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+\usepackage{pgfplots}
+\usepackage{emoji}
+\usepackage{makecell}
+
+\begin{document}
+
+\title{\textbf{Classificação de Descrições de Produtos em Português: Avaliação de Técnicas de Recuperação da Informação e o Impacto de seus Parâmetros}}
+\author{Gilsiley Henrique Darú}
+
+\date{\today}
+\maketitle
+
+\chapter*{Resumo}
+
+	A crescente demanda por classificação de informações baseada em conteúdo na era das mídias sociais e do comércio eletrônico tem levado à necessidade de classificação automatizada de produtos com base nas suas descrições. Este estudo tem como objetivo avaliar várias técnicas para essa tarefa, com ênfase em descrições escritas em português. Uma pipeline é implementada para pré-processar os dados, incluindo conversão para minúsculas, remoção de acentos e separação por espaço de unigramas. Em seguida, o método sacola de palavras é usado para converter o texto em dados numéricos e cinco técnicas de classificação são aplicadas: argmaxtf, argmaxtfnorm, argmaxtfidf proveniente da recuperação de informação.           
+				\vspace{0.15cm}
+        \noindent \textbf{Palavras-chave:} aprendizado de máquina; processamento de linguagem natural; classificação de texto; descrição do produto; texto curto; sacola de palavras; frequencia de termos; frequencia inversa de documentos
+
+	
+     
+% Adicione o resumo aqui.
+
+\tableofcontents
+
+% Conteúdo da introdução.
+\input{introducao.tex}
+
+\input{revisaosistematica}
+
+\input{fundamentos}
+% Conteúdo da revisão da literatura.
+
+\input{metodologia}
+
+\input{resultados}
+
+
+
+
+% \chapter{Conclusão}
+% \section{Resumo dos Achados}
+% \section{Contribuições da Pesquisa}
+% \section{Limitações do Estudo}
+% \section{Sugestões para Trabalhos Futuros}
+
+\input{conclusão}
+
+
+\chapter*{Referências}
+% Adicione suas referências bibliográficas aqui.
+\bibliography{referencias} % Nome do arquivo sem a extensão .bib
+\bibliographystyle{apalike}  % ou outro estilo de sua preferência, como "apa" ou "ieee"
+\addcontentsline{toc}{chapter}{Referências Bibliográficas}
+
+\appendix
+\chapter{Apêndices}
+\include{apendices/apendice01}
+% \section{Detalhes sobre o Dataset DARU}
+% \section{Código Fonte e Configurações dos Experimentos}
+
+
+\end{document}
+

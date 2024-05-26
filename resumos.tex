@@ -1,0 +1,169 @@
+[
+{
+capítulo: introdução.
+resumo: Em uma era de digitalização avançada, a classificação eficiente de textos tornou-se crucial, especialmente em redes sociais e e-commerce, desafiada pelo volume diário de mais de 2.5 quintilhões de bytes de dados e as complexidades linguísticas do português. Este estudo foca em otimizar a classificação de descrições curtas de produtos em português, enfrentando desafios como abreviações e regionalismos, e visa aprimorar a acurácia e eficácia de algoritmos de aprendizado de máquina através da análise de técnicas de pré-processamento e otimização de hiperparâmetros. A pesquisa adota uma abordagem quantitativa, utilizando o dataset DARU, e contribui com diretrizes para a classificação textual eficaz, apoiando avanços no processamento de linguagem natural e aprendizado de máquina.
+},
+{
+capítulo: revisão sistemática
+resumo: A revisão sistemática abordou a evolução da classificação de texto e sua intersecção com aprendizado de máquina, examinando 7169 artigos das bases Scopus e Web of Science, com foco em inglês e português. Observou-se um crescimento anual de 8,49% no tema, com um pico de publicações em 2021. A distribuição de publicações entre jornais e conferências mostra uma ampla aplicabilidade sem concentração significativa em fontes específicas. Artigos chave abrangem desde técnicas contra superajuste até aprendizado de transferência e avaliação de desempenho, refletindo um campo em constante desenvolvimento. A revisão destaca a evolução metodológica, desde técnicas determinísticas até o uso de redes neurais, e a diversidade de aplicações, incluindo saúde, direito e mídias sociais. Especificamente, a classificação de textos curtos, com foco em conteúdos de até 200 caracteres, é ressaltada por sua relevância em análises de sentimento e classificação de opiniões, mostrando a evolução das técnicas de pré-processamento e modelagem para lidar com a brevidade do texto.
+},
+{
+capítulo: fundamentos
+resumo: 
+Resumo da Seção: Introdução
+A introdução do capítulo de fundamentos estabelece o terreno para uma revisão detalhada dos conceitos e abordagens principais na classificação de textos curtos. Destaca-se a importância de entender estes conceitos fundamentais para embasar discussões futuras. O capítulo promete uma exploração aprofundada, começando com a definição de terminologias essenciais, seguida por uma revisão histórica e crítica das abordagens e técnicas de aprendizado de máquina utilizadas na classificação de textos. Pretende-se também analisar criticamente as limitações e lacunas existentes, além de contextualizar a relevância da pesquisa atual. O objetivo é fornecer uma base sólida sobre o estado da arte na área, apontando para futuras oportunidades de pesquisa e desenvolvimento.
+Resumo da Seção: Classificação de Texto Curto
+A seção sobre Classificação de Texto Curto aborda a tarefa de atribuir categorias pré-definidas a textos, focando em textos curtos de até 200 caracteres. O processo envolve transformar textos em dados numéricos através de técnicas de processamento de linguagem natural para que algoritmos de classificação possam operar. A definição formal apresenta a classificação como a atribuição de uma instância de texto a uma de várias classes, usando um modelo construído a partir de um conjunto de treinamento. Textos curtos, apesar de compartilharem a definição básica de classificação, trazem desafios únicos como contexto limitado, vocabulário limitado, ruído, informalidade, alta variabilidade, esparsidade, dados de treinamento limitados e ambiguidade. As aplicações da classificação de textos curtos são vastas, incluindo análise de mídia social, feedback do cliente, recuperação de informações, análise de sentimento, detecção de spam e modelagem de tópicos, demonstrando a importância e a relevância desta tarefa em diversos campos.
+Resumo da Seção: Processo de Classificação
+Esta seção detalha o processo de classificação de textos curtos, iniciando com a coleta de dados e passando por etapas críticas como pré-processamento, tokenização, extração de atributos, seleção e avaliação de modelos, culminando na implantação do modelo. Destaca-se a etapa de enriquecimento de atributos como crucial para textos curtos, visando superar desafios únicos dessa forma de texto. O pré-processamento é enfatizado como uma fase impactante, onde técnicas variadas são aplicadas para limpar e normalizar os dados, preparando-os para uma classificação eficaz. A seleção do modelo envolve treinamento e avaliação rigorosos para garantir precisão antes da implantação. A descrição inclui também uma lista de técnicas de pré-processamento específicas, destacando sua aplicabilidade e impacto no desempenho da classificação de descrições de produtos.
+Resumo da Seção: Tokenização e Representação Numérica
+Tokenização
+A tokenização é essencial no processamento de linguagem natural, servindo para dividir textos em unidades menores (tokens), usando delimitadores como espaços em branco, pontuação e caracteres especiais. Além da tokenização padrão, técnicas como n-grama e skip-grama permitem capturar sequências de palavras e dependências de longo alcance, respectivamente, fornecendo uma representação mais rica do contexto textual. A tabela de exemplo demonstra a aplicação dessas técnicas na descrição "Arroz tio joão 1.kg", ilustrando a transformação do texto original em tokens e subsequente análise n-grama.
+
+Representação Numérica e Extração de Atributos
+Após a tokenização, a representação numérica converte textos em formatos que podem ser processados por algoritmos de aprendizado de máquina. A extração de atributos identifica características relevantes dentro dos textos, como palavras ou combinações de palavras, essenciais para a classificação. Técnicas como BoW, TF e TF-IDF são comumente usadas para converter tokens em vetores numéricos, capturando a importância relativa das palavras dentro dos textos. A seleção de características se concentra na identificação dos atributos mais informativos, melhorando a precisão dos modelos de classificação. As características semânticas, em particular, são destacadas por sua relevância na determinação do conteúdo e significado dos textos.
+Resumo da Seção: Modelo Sacola de Palavras (Bag of Words-BoW), Frequência de Termos, Modelo Booleano, e TF-IDF
+Modelo Sacola de Palavras (BoW) e Modelo Booleano
+O modelo Bag of Words (BoW) é uma técnica de representação numérica de documentos que simplifica o texto ao ignorar a ordem e a estrutura gramatical, focando na presença e na frequência dos termos. No modelo booleano, uma variante do BoW, cada termo em um documento é representado como 1 (presente) ou 0 (ausente), sem considerar a frequência do termo. Este método oferece uma abordagem simplificada para modelar textos, útil para várias aplicações de processamento de linguagem natural, incluindo classificação de texto.
+
+Exemplo de Aplicação do BoW
+Um exemplo prático demonstra a aplicação do BoW em descrições de produtos, começando pela normalização do texto (remoção de acentos, conversão para minúsculas) e seguindo para a tokenização. Um vocabulário é então criado a partir dos tokens únicos, e a frequência de cada token é contada em cada descrição. Este processo resulta em uma representação vetorial das descrições, onde cada vetor indica a presença e a frequência dos termos do vocabulário nas descrições.
+
+TF-IDF: Term Frequency-Inverse Document Frequency
+O modelo TF-IDF é uma técnica avançada que pondera a frequência dos termos (TF) pela sua raridade nos documentos da coleção (IDF), destacando a importância relativa de cada termo. Este método equilibra a relevância dos termos dentro dos documentos individuais com sua exclusividade em toda a coleção, oferecendo uma representação numérica mais precisa para análises subsequentes, como classificação de texto.
+
+Importância da Normalização no TF-IDF
+A normalização dos pesos TF-IDF é crucial para mitigar distorções causadas por diferenças no comprimento dos documentos, garantindo que a importância dos termos seja avaliada de forma equitativa em toda a coleção de documentos. Esta etapa ajusta os pesos dos termos com base na norma dos vetores, facilitando a comparação entre documentos de tamanhos variados.
+Resumo da Seção: Modelos de Projeção - Redução de Dimensionalidade, Word Embeddings Estáticos e Contextualizados
+Modelos de Projeção - Redução de Dimensionalidade
+A redução de dimensionalidade é uma etapa crucial na classificação de texto, facilitando o manejo da alta dimensionalidade e complexidade dos dados textuais. Técnicas como PCA, SVD e LDA são destacadas por sua eficácia na preservação das características mais relevantes enquanto minimizam o ruído e evitam o sobreajuste. A Análise Semântica Latente (LSA), em particular, emprega a SVD para condensar a matriz de documento em uma forma reduzida, capturando os conceitos mais significativos e melhorando a interpretação dos dados.
+
+Word Embeddings Estáticos
+Os embeddings estáticos, incluindo Word2Vec, GloVe e Fast Text, oferecem representações vetoriais fixas para as palavras, independentemente do contexto. Essas técnicas avançam na representação de palavras, proporcionando vetores densos que capturam probabilidades e mapeiam relações semânticas. Embora melhorem a capacidade de modelar relações entre palavras, apresentam limitações, como a incapacidade de ajustar os embeddings ao contexto e a exigência de grande capacidade de memória.
+
+Embeddings Contextualizados
+Os embeddings contextualizados, como ELMo, GPT-2 e BERT, introduzem representações dinâmicas que adaptam os vetores de palavras ao contexto específico em que aparecem. Esses modelos oferecem uma compreensão mais profunda das nuances semânticas e contextuais, permitindo múltiplos embeddings para uma palavra e demonstrando desempenho superior em diversas tarefas de NLP. Eles superam as limitações dos embeddings estáticos ao incorporar o contexto, mas exigem recursos computacionais significativos.
+
+### Resumo da Seção: Classificação de Texto a partir da Função de Ordenação da Recuperação da Informação
+
+A Recuperação de Informação (RI) é um campo que se ocupa de encontrar e fornecer informações relevantes em resposta a uma necessidade específica de informação, comum em sistemas de busca e gerenciamento de grandes repositórios de documentos. A teoria formal da RI propõe um modelo baseado em quatro elementos fundamentais: um conjunto de documentos \(D\), um conjunto de consultas \(Q\), uma framework \(\mathcal{F}\) que modela documentos e consultas, e uma função de ranqueamento \(R(q_i, d_j)\) que atribui valores reais a pares de consultas e documentos, ordenando os documentos em relação a uma consulta específica. Este modelo é ilustrado por uma função de ordenação que avalia a relevância de cada documento em relação a uma consulta dada, convertendo tanto a consulta quanto os documentos em representações numéricas para aplicar a função de ranqueamento.
+
+### Técnicas para Classificação de Texto
+
+#### Adaptação da Teoria de Recuperação de Informação
+A adaptação da teoria de RI para classificação de texto permite a aplicação de seus princípios para categorizar produtos ou documentos, aplicando uma função de ordenação baseada em características extraídas dos textos para classificá-los de acordo com sua relevância ou categoria.
+
+#### Técnicas de Machine Learning
+As principais técnicas de Machine Learning utilizadas para classificação de texto incluem Naive Bayes (NB), Decision Trees (DT), K-Nearest Neighbors (KNN), Support Vector Machines (SVM), além de métodos de ensemble como bagging, boosting, e Random Forests (RF). Cada uma dessas técnicas oferece uma abordagem única para modelar e resolver problemas de classificação de texto, explorando diferentes estratégias para entender e categorizar os dados textuais.
+
+#### Técnicas de Redes Neurais
+As técnicas de redes neurais oferecem uma abordagem poderosa para a classificação de texto, utilizando estruturas complexas e algoritmos de aprendizado profundo para capturar relações e padrões dentro dos dados. Métodos como redes neurais convolucionais (CNNs), redes neurais recorrentes (RNNs), e arquiteturas avançadas como Long Short-Term Memory (LSTM) e Transformer, permitem uma análise profunda e detalhada dos textos, superando muitas das limitações das técnicas tradicionais de Machine Learning.
+### Resumo da Seção: Adaptação da Recuperação da Informação para Classificação e Métodos Baseados em Argmax
+
+#### Adaptação da Recuperação da Informação para Classificação
+A adaptação da teoria de Recuperação da Informação (RI) ao contexto de classificação de produtos introduz uma sêxtupla \((X, Y, \mathcal{M}, Q, R, \mathcal{C})\), onde:
+- \(X\) representa as descrições dos produtos,
+- \(Y\) é o conjunto de classes definidas,
+- \(\mathcal{M}: X \to Y\) é a função de mapeamento que associa descrições a suas classes a priori,
+- \(Q\) compreende as descrições a serem classificadas,
+- \(R\) é a função de ranqueamento tradicional da RI,
+- \(\mathcal{C}: X \to Y\) é a função de mapeamento pós-classificação, efetivamente um classificador.
+
+Este modelo expande a interação típica de RI, incluindo uma etapa de mapeamento para categorizar as descrições dos produtos em classes predefinidas, como ilustrado na figura adaptada do modelo de RI.
+
+#### Matriz Termo-Documento
+A matriz termo-documento é um conceito fundamental da RI que modela informações em uma coleção de documentos para facilitar a recuperação de informações relevantes. Cada linha representa um termo e cada coluna um documento, com os elementos da matriz indicando a presença, frequência ou outras medidas de relevância dos termos nos documentos.
+
+#### Similaridade
+- **Similaridade de Cosseno**: Mede o cosseno do ângulo entre dois vetores no espaço vetorial, útil para avaliar a semelhança entre descrições de produtos e categorias.
+- **Distância Euclidiana**: Calcula a "distância ordinária" entre dois pontos no espaço, menos eficaz para categorização de texto quando comparada à similaridade de cosseno.
+
+#### Argmax para Classificação de Texto
+Os métodos baseados em argmax envolvem calcular a similaridade entre um vetor de consulta (representando o texto a ser classificado) e vetores de documento (representando as categorias). A classificação é determinada pela categoria cujo vetor de documento tem a maior similaridade com o vetor de consulta. Este processo pode ser realizado com ou sem normalização, adaptando a medida de similaridade (como a similaridade de cosseno) para a tarefa de classificação.
+
+### Resumo da Seção: Técnicas Supervisionadas Aplicadas à Classificação de Textos
+
+A classificação supervisionada de textos é uma área central do aprendizado de máquina, envolvendo o treinamento de modelos em conjuntos de dados rotulados para prever a categoria de novos textos. Esta seção examina algumas das principais técnicas supervisionadas utilizadas para classificação de textos, destacando suas características, vantagens e desvantagens.
+
+#### Naive Bayes (NB)
+O Naive Bayes é um classificador probabilístico eficaz e rápido, baseado no Teorema de Bayes, e opera sob a suposição de independência entre as características. Apesar de suas suposições simplistas, é amplamente utilizado em tarefas de classificação de texto devido à sua simplicidade e eficiência.
+
+#### K Vizinhos Mais Próximos (KNN)
+O KNN é um método não paramétrico que classifica instâncias com base na proximidade com instâncias previamente conhecidas. A seleção do número de vizinhos \(k\) e a métrica de distância (como a distância de Minkowski) são cruciais para seu desempenho. O método é valorizado por sua simplicidade, embora possa enfrentar desafios em conjuntos de dados de alta dimensionalidade.
+
+#### Máquinas de Vetores de Suporte (SVM)
+As SVMs identificam um hiperplano que maximiza a margem entre classes diferentes. Introduzem o truque do kernel para lidar com dados não linearmente separáveis, permitindo a construção de fronteiras de decisão complexas em espaços de alta dimensão. As SVMs são conhecidas por sua robustez e eficácia em separar categorias, mas podem ser desafiadoras em termos de escolha da função de kernel e parâmetros.
+
+#### Árvores de Decisão
+Árvores de decisão representam uma estrutura de árvore que modela decisões e suas possíveis consequências. Utilizam métricas como Ganho de Informação e Impureza de Gini para a seleção de atributos. São facilmente interpretáveis, mas podem sofrer de sobreajuste se não forem devidamente podadas.
+
+#### Regressão Logística
+A Regressão Logística é um modelo estatístico que estima a probabilidade de um resultado com base em uma ou mais variáveis independentes. Utiliza a função logística para modelar a probabilidade de pertencimento a uma classe. Variantes como Regressão Ridge (L2) e Lasso (L1) introduzem penalidades para lidar com multicolinearidade e sobreajuste.
+
+A seção sobre métricas de avaliação fornece um panorama detalhado das principais ferramentas utilizadas para avaliar o desempenho de modelos de classificação de texto, tanto em contextos binários quanto multiclasse. Estas métricas oferecem insights valiosos sobre diferentes aspectos do desempenho do modelo, permitindo que pesquisadores e praticantes identifiquem áreas de força e oportunidades de melhoria.
+
+### Resumo da Seção: Métricas de Avaliação
+
+- **Matriz de Confusão**: Central para entender o desempenho de modelos de classificação, delineando as previsões corretas e incorretas em categorias de verdadeiros positivos, falsos positivos, verdadeiros negativos e falsos negativos.
+
+- **Acurácia**: Mede a proporção de previsões corretas em relação ao total de previsões, fornecendo uma visão geral da eficácia do modelo.
+
+- **Precisão**: Avalia a proporção de previsões positivas corretas, focando na qualidade das previsões positivas do modelo.
+
+- **Revocação**: Mede a proporção de positivos reais que foram corretamente identificados, refletindo a capacidade do modelo de detectar todas as instâncias positivas relevantes.
+
+- **F1-Score**: Combina precisão e revocação em uma métrica única, buscando um equilíbrio entre a precisão das previsões positivas e a completude da detecção dos positivos reais.
+
+- **Médias Macro e Micro**: Oferecem formas agregadas de avaliar precisão e revocação em contextos multiclasse, equilibrando o desempenho em todas as classes.
+
+### Importância das Métricas de Avaliação
+
+Estas métricas são cruciais para a validação rigorosa de modelos de classificação de texto. Elas permitem uma comparação objetiva entre diferentes modelos ou configurações e facilitam a identificação de modelos que melhor se alinham aos objetivos específicos de uma tarefa de classificação. Por exemplo, em aplicações onde o custo de falsos positivos é alto, a precisão pode ser mais valorizada, enquanto em contextos onde a detecção de todos os positivos é crítica, a revocação pode ser priorizada.
+
+A seção sobre técnicas para divisão do conjunto de dados para avaliação detalha metodologias fundamentais no campo do aprendizado de máquina, essenciais para garantir que os modelos desenvolvidos possam ser avaliados de forma robusta e confiável. Estas técnicas são vitais para minimizar o risco de overfitting, garantindo que os modelos tenham um desempenho consistente não apenas nos dados de treinamento, mas também em novos dados não vistos.
+
+### Resumo da Seção: Técnicas de Divisão de Dados
+
+- **Validação Cruzada K-Fold**: Promove uma avaliação confiável do desempenho do modelo, utilizando todo o conjunto de dados de maneira eficiente, e é particularmente útil quando o tamanho do conjunto de dados é limitado.
+
+- **Divisão Aleatória**: Oferece uma abordagem rápida e fácil para dividir os dados, mas pode ser menos robusta do que a validação cruzada, especialmente em conjuntos de dados menores ou com distribuições de classes desbalanceadas.
+
+- **Amostragem Estratificada**: Essencial para manter a representação proporcional de classes desbalanceadas em todas as divisões de dados, garantindo que o modelo seja avaliado de forma justa em todas as categorias.
+
+### Importância das Técnicas de Divisão de Dados
+
+Estas técnicas são cruciais para o ciclo de desenvolvimento de modelos de aprendizado de máquina, permitindo que pesquisadores e desenvolvedores:
+
+- Avaliem de forma confiável o desempenho dos modelos em dados não vistos.
+- Mitiguem os riscos associados ao overfitting, promovendo a generalização dos modelos.
+- Façam seleções informadas de modelos e parâmetros, baseadas em métricas de desempenho robustas.
+
+},
+{
+capítulo: metodologia
+resumo: A seção de metodologia apresenta um guia detalhado para a execução do estudo sobre a eficácia dos algoritmos de classificação de texto. Aqui, as decisões metodológicas são cuidadosamente justificadas, e os procedimentos experimentais são claramente delineados, assegurando que o estudo seja replicável e que os resultados sejam válidos e confiáveis.
+
+### Resumo da Metodologia
+
+- **Abordagem Quantitativa:** Selecionada por sua capacidade de fornecer resultados mensuráveis e replicáveis, fundamentais para a avaliação do desempenho dos algoritmos de aprendizado de máquina em classificação de texto.
+
+- **Design Experimental:** Adotado para comparar o desempenho de vários algoritmos de classificação de texto, estabelecendo uma relação causal entre as técnicas utilizadas e os resultados obtidos.
+
+- **Ferramentas Utilizadas:** Python e a biblioteca scikit-learn foram escolhidos devido à sua robustez, vasta documentação e suporte à comunidade, facilitando a implementação dos algoritmos de aprendizado de máquina.
+
+- **Conjunto de Dados:** Utilizado um conjunto de dados de descrições de produtos em português, com a finalidade de explorar a eficácia dos algoritmos de classificação em um contexto específico e desafiador.
+
+- **Procedimento Experimental:** Inclui etapas como seleção de dados, pré-processamento, tokenização, vetorização, seleção de modelos, ajuste fino dos modelos e avaliação, seguindo uma metodologia rigorosa para assegurar a validade dos resultados.
+
+- **Ajuste Fino dos Modelos:** Avaliação cuidadosa dos hiperparâmetros para cada modelo selecionado, incluindo métodos baseados em argmax e modelos tradicionais como SVM, Regressão Logística, Árvores de Decisão, KNN e Naive Bayes, para otimizar o desempenho.
+
+- **Métricas de Avaliação:** F1-Score Macro e Acurácia foram escolhidas para fornecer uma avaliação abrangente e equitativa do desempenho dos modelos.
+
+### Importância da Metodologia
+
+A metodologia detalhada neste capítulo estabelece as bases para um estudo rigoroso e metodologicamente sólido, permitindo que os resultados sejam interpretados com confiança. A escolha das ferramentas, o design da pesquisa e as técnicas de avaliação são fundamentais para compreender o impacto das diferentes abordagens de classificação de texto e sua aplicabilidade em cenários reais.
+
+
+
+}
+]

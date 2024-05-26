@@ -1,0 +1,51 @@
+\section{Código Fonte para Geração das Matrizes Termos Documento}
+\label{appendix:codigo-fonte-matrizes}
+A seguir, apresentamos o código fonte utilizado para a geração das matrizes de frequência, TF-IDF e TF-IDF normalizado, juntamente com comentários explicativos:
+
+\begin{verbatim}
+from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
+from sklearn.preprocessing import normalize
+import pandas as pd
+
+# Definindo os textos para as classes ARROZ e FEIJÃO
+textos_arroz = ["arroz tio joao 1 kg arroz fumacence parb 1kg"]
+textos_feijao = ["feijao carioca 1kg azulao feij 1 kg preto caldao"]
+
+# Unindo os textos das duas classes para análise conjunta
+textos = textos_arroz + textos_feijao
+
+# Criando o vetorizador para contagem de frequência dos termos
+count_vectorizer = CountVectorizer(token_pattern=r"(?u)\b\w+\b")
+X_count = count_vectorizer.fit_transform(textos)
+
+# Criando o vetorizador TF-IDF para calcular a frequência ponderada dos termos
+tfidf_vectorizer = TfidfVectorizer(token_pattern=r"(?u)\b\w+\b")
+X_tfidf = tfidf_vectorizer.fit_transform(textos)
+
+# Normalizando os valores TF-IDF para obter uma distribuição mais uniforme
+X_tfidf_norm = normalize(X_tfidf, norm='l1', axis=1)
+
+# Convertendo os resultados para DataFrames para facilitar a visualização
+df_count = pd.DataFrame(X_count.toarray(), 
+                        columns=count_vectorizer.get_feature_names_out(), 
+                        index=['ARROZ', 'FEIJÃO'])
+df_tfidf = pd.DataFrame(X_tfidf.toarray(), 
+                        columns=tfidf_vectorizer.get_feature_names_out(), 
+                        index=['ARROZ', 'FEIJÃO'])
+df_tfidf_norm = pd.DataFrame(X_tfidf_norm.toarray(), 
+                             columns=tfidf_vectorizer.get_feature_names_out(), 
+                             index=['ARROZ', 'FEIJÃO'])
+
+# Definindo os índices multiníveis para as colunas
+metodos = ['Frequência', 'TF-IDF', 'TF-IDF Normalizado']
+termos = ['ARROZ', 'FEIJÃO']
+colunas = pd.MultiIndex.from_product([metodos, termos], names=['Método', 'Termo'])
+
+# Combinando os DataFrames com índices multiníveis
+df_final = pd.concat([df_count.T, df_tfidf.T, df_tfidf_norm.T], axis=1)
+df_final.columns = colunas
+
+# Exibindo a tabela em formato LaTeX
+print(df_final.to_latex())
+\end{verbatim}
+\end{table}
