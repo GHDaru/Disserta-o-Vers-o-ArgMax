@@ -465,7 +465,7 @@ A Análise Semântica Latente (LSA) é uma técnica para a geração automática
     A = TSD^T
 \end{equation}
 
-Nesta fórmula, T e D são compostos por vetores ortogonais, enquanto S é uma matriz diagonal de valores singulares. Os autovetores com os maiores valores singulares capturam os eixos de maior variação nos dados, permitindo a projeção de cada documento em um espaço de dimensionalidade inferior. Este processo de redução de dimensionalidade é essencial para diminuir o ruído nos dados e evitar o sobreajuste.
+Nesta fórmula, T e D são compostos por vetores ortogonais, enquanto S é uma matriz diagonal de valores singulares. Os autovetores com os maiores valores singulares capturam os eixos de maior variação nos dados, permitindo a projeção de cada documento em um espaço de dimensionalidade inferior. Este processo de redução de dimensionalidade permite diminuir o ruído nos dados e evitar o sobreajuste.
 
 A utilização da LSA na classificação de textos (TC) facilita a identificação de padrões e temas subjacentes, que podem não ser direto em análises textuais diretas. Ao focar nas características mais significativas dos documentos através da redução da dimensionalidade, a LSA melhora a eficácia dos algoritmos de classificação e recuperação de informações.
 
@@ -580,21 +580,21 @@ Conforme mostrado na Figura~\ref{fig:ri_adapted_model}, a adaptação do modelo 
 \centering
 \begin{tikzpicture}[node distance=2cm, auto]
   % Nodes
-  \node (consulta) [draw, rectangle] {consulta};
-  \node (qi) [draw, rectangle, right=2.5cm of consulta] {\(q_i\)};
-  \node (R) [draw, rectangle, right=2.5cm of qi] {\(R(q_i, d_j)\)};
-  \node (/mathcal{C}) [draw, rectangle, right=of R] {\(c\)};
-  \node (descriptions) [draw, rectangle, , below=1.5cm of consulta] {descrições};
-  \node (documentos) [draw, rectangle, right=1.5cm of descriptions] {documentos};
+  \node (descriptions) [draw, rectangle] {descrições};
+  \node (documentos) [draw, rectangle, right=of descriptions] {documentos};
   \node (dj) [draw, rectangle, right=of documentos] {\(d_j\)};
-  
+  \node (consulta) [draw, rectangle, above=1.5cm of documentos] {consulta};
+  \node (qi) [draw, rectangle, right=of consulta] {\(q_i\)};
+  \node (R) [draw, rectangle, right=of qi] {\(R(q_i, d_j)\)};
+  \node (c) [draw, rectangle, right=of R] {\(\mathcal{C}\)};
+
   % Arrows
-  \draw[-{Latex[length=3mm]}] (consulta) -- (qi); 
   \draw[-{Latex[length=3mm]}] (descriptions) -- (documentos);
   \draw[-{Latex[length=3mm]}] (documentos) -- (dj);
+  \draw[-{Latex[length=3mm]}] (consulta) -- (qi);
   \draw[-{Latex[length=3mm]}] (qi) -- (R);
   \draw[-{Latex[length=3mm]}] (dj) -- (R);
-  \draw[-{Latex[length=3mm]}] (R) -- (consulta);
+  \draw[-{Latex[length=3mm]}] (R) -- (c);
 \end{tikzpicture}
 \caption{Adaptação do modelo de RI para classificação de produtos, incorporando a etapa de mapeamento para classes.}
 \label{fig:ri_adapted_model}
@@ -649,7 +649,7 @@ Este exemplo ilustra a aplicação da técnica de "sacola de palavras" nas descr
     \item Utilização de técnicas de vetorização para gerar representações baseadas em frequência, TF-IDF e TF-IDF normalizado.
 \end{enumerate}
 
-A matriz termo-documento \( A \) é representada como:
+A matriz termo-documento \( A \) é representada na tabela \ref{tab:matriz-termo-documento}.  Nesta matriz, as primeiras duas colunas mostram a frequência dos termos nas classes ARROZ e FEIJÃO, as próximas duas colunas exibem os valores TF-IDF, e as últimas duas colunas apresentam os valores TF-IDF normalizados.
 
 \begin{table}[ht]
 \centering
@@ -679,9 +679,6 @@ tio       &          1 &      0 &  0.32 &  0.00 &           0.12 &  0.00 \\
 \end{tabular}
 \end{equation}
 \end{table}
-
-Na matriz \( A \), as primeiras duas colunas representam a frequência dos termos nas classes ARROZ e FEIJÃO, as próximas duas colunas representam os valores TF-IDF, e as últimas duas colunas apresentam os valores TF-IDF normalizados. 
-
 
 Dentro da matriz termo-documento \( A \), as descrições das classes ARROZ e FEIJÃO são representadas como vetores coluna. Cada vetor coluna encapsula a frequência dos termos do vocabulário dentro de uma classe específica. Por exemplo, o vetor coluna para a classe ARROZ é representado por \{1, 1, 2, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1\}, onde cada elemento corresponde à frequência de um termo específico do vocabulário na descrição de ARROZ. De maneira similar, o vetor para a classe FEIJÃO é \{1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 0, 1, 0\}. 
 
@@ -721,7 +718,7 @@ A similaridade de Cosseno mede o cosseno do ângulo entre dois vetores no espaç
 \begin{equation}
     \text{Similaridade de Cosseno}(u,v) = \frac{\sum_{i=1}^{n} u_i \cdot v_i}{\sqrt{\sum_{i=1}^{n} u_i^2} \cdot \sqrt{\sum_{i=1}^{n} v_i^2}}
 \end{equation}
-onde $A$ e $B$ são dois vetores.
+onde $u$ e $v$ são dois vetores.
 
 \textbf{Exemplo de Aplicação da Similaridade de Cosseno para a Tarefa de Classificação}
 
@@ -737,7 +734,7 @@ A similaridade de cosseno entre o vetor \(v\) e cada vetor de categoria é calcu
     \item \textbf{Para ARROZ:} A similaridade é dada por \(\frac{u \cdot ARROZ}{\|u\|\|ARROZ\|}\), resultando em:
     \[\frac{6}{\sqrt{5} \cdot \sqrt{12}} \approx 0.775\]
 
-    \item \textbf{Para FEIJÃO:} A similaridade é dada por \(\frac{u \cdot FEIJÃO}{\|u\|\|FEIJÃO\|}\), resultando em:
+    \item \textbf{Para FEIJÃO:} A similaridade é dada por \(\frac{u \cdot FEIJAO}{\|u\|\|FEIJAO\|}\), resultando em:
     \[\frac{3}{\sqrt{5} \cdot \sqrt{7}} \approx 0.507\]
 \end{itemize}
 
@@ -781,7 +778,7 @@ Categoria = argmax(\frac{A}{A_.}^Tx)
 
 A classificação supervisionada de textos é uma tarefa de aprendizado de máquina que envolve treinar um classificador em um conjunto de dados rotulados de textos, onde o rótulo indica a classe ou categoria a qual cada texto pertence. O objetivo é usar o classificador treinado para prever o rótulo de classe de novos textos não vistos.
 
-A seguir apresenta-se alguns artigos com suas técnicas avaliadas\ref{tab:ml_techniques}.
+A seguir apresenta-se alguns artigos com suas técnicas avaliadas fornecido pela tabela \ref{tab:ml_techniques}.
 
 \begin{table}[h]
 \centering
@@ -843,7 +840,7 @@ A seleção apropriada de \(p\) e, consequentemente, da métrica de distância i
 A eficácia do KNN é influenciada pela escolha do número de vizinhos $k$, com um valor muito baixo podendo levar a classificações altamente sensíveis ao ruído e classes desbalanceadas, enquanto um valor muito alto pode suavizar demais as fronteiras de decisão entre as classes.  \cite{bhavani2021review} destacam a importância da seleção cuidadosa de $k$, assim como a necessidade de ponderar a contribuição dos vizinhos com base na distância, para melhorar a precisão da classificação.  Uma forma sugerida é atribuir pesos inversamente proporcionais à distância.
 
 
-O KNN é particularmente valorizado pela sua simplicidade e pela eficácia em uma ampla gama de tarefas de classificação e regressão, embora o seu desempenho possa ser comprometido em conjuntos de dados com alta dimensionalidade ou quando a distribuição das classes é desbalanceada. \cite{kowsari2019text} destaca como aspecto negativo a alto custo computacional, dificuldade em encontra um bom valor para k e o problema da maldição da dimensionalidade.  Isto pode ser explicado pela necessidade do KNN de computar distâncias para todas as instâncias de treinamento antes de fazer uma previsão, sendo um problema para grandes conjuntos de dados e sua eficácia diminui em espaços de alta dimensão, pois o conceito de proximidade se torna menos significativo, complicando a tarefa de identificar os verdadeiros vizinhos mais próximos, \cite{hastie2009elements}.
+O KNN é particularmente valorizado pela sua simplicidade e pela eficácia em uma ampla gama de tarefas de classificação e regressão, embora o seu desempenho possa ser comprometido em conjuntos de dados com alta dimensionalidade ou quando a distribuição das classes é desbalanceada. \cite{kowsari2019text} destaca como aspecto negativo a alto custo computacional, dificuldade em encontrar um bom valor para k e o problema da maldição da dimensionalidade.  Isto pode ser explicado pela necessidade do KNN de computar distâncias para todas as instâncias de treinamento antes de fazer uma previsão, sendo um problema para grandes conjuntos de dados e sua eficácia diminui em espaços de alta dimensão, pois o conceito de proximidade se torna menos significativo, complicando a tarefa de identificar os verdadeiros vizinhos mais próximos, \cite{hastie2009elements}.
 
 \subsection{Máquinas de Vetores de Suporte}
 
@@ -963,7 +960,7 @@ A regressão Lasso estende o conceito de regressão Ridge ao empregar um termo d
 Esta abordagem foi proposta por Tibshirani \cite{tibshirani1996regression}, oferecendo um método para simplificação do modelo e seleção de variáveis.
 \subsubsection{ElasticNet}
 
-O modelo Elastic Net combina as penalidades L1 e L2, oferecendo uma solução híbrida que captura as vantagens de ambos os métodos de regularização \cite{hastie2009Elements}:
+O modelo Elastic Net combina as penalidades L1 e L2, oferecendo uma solução híbrida que captura as vantagens de ambos os métodos de regularização \cite{hastie2009elements} :
 
 \begin{equation}
 L_{elastic} = \sum (Y - \hat{Y})^2 + \lambda_1\sum |\beta_j| + \lambda_2\sum \beta_j^2
@@ -975,7 +972,7 @@ A Regressão Logística Multinomial estende a regressão logística para lidar c
 
 \[ P(Y=j) = \frac{e^{\beta_{0j} + \beta_{1j}X_1 + ... + \beta_{nj}X_n}}{1 + \sum_{k=1}^{J-1} e^{\beta_{0k} + \beta_{1k}X_1 + ... + \beta_{nk}X_n}} \]
 
-para \(j = 1, 2, ..., J-1\) categorias. Este modelo é em lidar com cenários de classificação complexos e foi desenvolvido por McFadden \cite{mcfadden1973conditional}.
+para \(j = 1, 2, ..., J-1\) categorias. Este modelo é eficiente em lidar com cenários de classificação complexos e foi desenvolvido por McFadden \cite{mcfadden1973conditional}.
 
 A Regressão Logística destaca-se pela simplicidade de implementação e eficiência computacional, evitando a necessidade de ajustes e escalonamento prévio dos dados. Contudo, enfrenta limitações em cenários não-lineares e requer independência entre observações, o que implica considerações ao modelar com variáveis independentes para previsão \cite{kowsari2019text}.
 
@@ -1029,6 +1026,86 @@ Métricas de avaliação são medidas que permitem avaliar o desempenho de algor
 Avançando para o domínio das classificações multiclasse, a complexidade aumenta, e métricas adicionais, como a matriz de confusão multiclasse e medidas derivadas, tornam-se essenciais para capturar a performance do modelo de forma abrangente, \cite{grandini2020metrics}.
 
 O primeiro conceito importante é a matriz de confusão.  A partir dela são derivados as demais métricas.
+
+\subsection{Matriz de Confusão}
+
+A matriz de confusão é uma ferramenta importante para avaliar o desempenho de modelos de classificação, especialmente em problemas de classificação binária, onde existem apenas duas classes possíveis para cada instância. Como apresentado na Tabela \ref{tab:confusao}, a matriz de confusão é composta por quatro células:
+
+\begin{itemize}
+    \item Verdadeiros Positivos (TP) representam as instâncias positivas corretamente identificadas.
+    \item Falsos Positivos (FP) são as instâncias negativas incorretamente identificadas como positivas.
+    \item Falsos Negativos (FN) são as instâncias positivas incorretamente identificadas como negativas.
+    \item Verdadeiros Negativos (TN) representam as instâncias negativas corretamente identificadas.
+\end{itemize}
+
+\begin{table}[h]
+\centering
+\caption{Matriz de confusão para um modelo de classificação binária}
+\label{tab:confusao}
+\begin{tabular}{c|cc}
+\multicolumn{1}{c}{\textbf{Classe Real}} & \multicolumn{2}{c}{\textbf{Classe Prevista}} \\ \cline{2-3}
+\multicolumn{1}{c|}{} & \textbf{Positivo} & \textbf{Negativo} \\ \hline
+\textbf{Positivo} & TP & FN \\
+\textbf{Negativo} & FP & TN \\ \hline
+\end{tabular}
+\end{table}
+
+As principais medidas derivadas da matriz de confusão são acurácia, precisão, revocação e F1-Score.
+
+\subsubsection{Acurácia}
+A acurácia é a porcentagem de previsões corretas feitas pelo modelo, dada pela equação (\ref{eq:accuracy}):
+\begin{equation}
+\text{Acurácia} = \frac{\text{Verdadeiros Positivos} + \text{Verdadeiros Negativos}}{\text{Total de Exemplos}} \label{eq:accuracy}
+\end{equation}
+
+\subsubsection{Precisão}
+A precisão é a proporção de verdadeiros positivos em relação ao total de previsões positivas feitas pelo modelo, dada pela equação (\ref{eq:precision}):
+\begin{equation}
+\text{Precisão} = \frac{\text{Verdadeiros Positivos}}{\text{Verdadeiros Positivos} + \text{Falsos Positivos}} \label{eq:precision}
+\end{equation}
+
+\subsubsection{Revocação}
+A revocação é a proporção de verdadeiros positivos em relação ao total de exemplos positivos existentes, dada pela equação (\ref{eq:recall}):
+\begin{equation}
+\text{Revocação} = \frac{\text{Verdadeiros Positivos}}{\text{Verdadeiros Positivos} + \text{Falsos Negativos}} \label{eq:recall}
+\end{equation}
+
+\subsubsection{F1-Score}
+O F1-Score é uma métrica que combina precisão e revocação em uma única medida, dada pela fórmula (\ref{eq:f1score}):
+\begin{equation}
+\text{F1-Score} = 2 \times \frac{\text{Precisão} \times \text{Revocação}}{\text{Precisão} + \text{Revocação}} \label{eq:f1score}
+\end{equation}
+
+\subsection{Exemplo de Cálculos com a Matriz de Confusão}
+
+Nesta seção, apresentamos exemplos de cálculo para as métricas descritas usando uma matriz de confusão simplificada.
+
+\begin{table}[h]
+\centering
+\caption{Exemplo de matriz de confusão}
+\label{tab:exemplo_matriz_confusao}
+\begin{tabular}{c|cc}
+\multicolumn{1}{c}{\textbf{Classe Real}} & \multicolumn{2}{c}{\textbf{Classe Prevista}} \\ \cline{2-3}
+\multicolumn{1}{c}{} & \textbf{Positivo} & \textbf{Negativo} \\ \hline
+\textbf{Positivo} & 50 (TP) & 5 (FN) \\
+\textbf{Negativo} & 10 (FP) & 135 (TN) \\ \hline
+\end{tabular}
+\end{table}
+
+Para a matriz de confusão da Tabela \ref{tab:exemplo_matriz_confusao}, temos os seguintes cálculos:
+
+\textbf{Acurácia:}
+\[ \text{Acurácia} = \frac{\text{TP} + \text{TN}}{\text{Total de Exemplos}} = \frac{50 + 135}{200} = 0.925 = 92.5\% \]
+
+\textbf{Precisão:}
+\[ \text{Precisão} = \frac{\text{TP}}{\text{TP} + \text{FP}} = \frac{50}{50 + 10} = \frac{50}{60} = 0.8333 = 83.33\% \]
+
+\textbf{Revocação:}
+\[ \text{Revocação} = \frac{\text{TP}}{\text{TP} + \text{FN}} = \frac{50}{50 + 5} = \frac{50}{55} = 0.9091 = 90.91\% \]
+
+\textbf{F1-Score:}
+\[ \text{F1-Score} = 2 \times \frac{\text{Precisão} \times \text{Revocação}}{\text{Precisão} + \text{Revocação}} = 2 \times \frac{0.8333 \times 0.9091}{0.8333 + 0.9091} = 0.8671 = 86.71\% \]
+
 
 \subsection{Matriz de Confusão}
 
@@ -1162,8 +1239,8 @@ A tabela \ref{tab:exemplo_f1score} apresenta um exemplo de cálculo do F1-Score 
 \begin{tabular}{c|cc}
 \multicolumn{1}{c}{\textbf{Classe Real}} & \multicolumn{2}{c}{\textbf{Classe Prevista}} \\ \cline{2-3}
 \multicolumn{1}{c}{} & \textbf{Positivo}  & \textbf{Negativo} \\ \hline
-\multicolumn{1}{c}{\textbf{Positivo} $\rightarrow$} & \cellcolor{green!25}50 (TP) & \cellcolor{red!25}5 (FN) \\
-\multicolumn{1}{c}{\textbf{Negativo}} & \cellcolor{red!25}10 (FP)  & \cellcolor{green!25}135 (TN) \\ \hline
+% \multicolumn{1}{c}{\textbf{Positivo} $\rightarrow$} & \cellcolor{green!25}50 (TP) & \cellcolor{red!25}5 (FN) \\
+% \multicolumn{1}{c}{\textbf{Negativo}} & \cellcolor{red!25}10 (FP)  & \cellcolor{green!25}135 (TN) \\ \hline
 \end{tabular}
 \end{table}
 
@@ -1201,6 +1278,62 @@ Nesta matriz:
 \end{itemize}
 
 Cada elemento \(C_{ij}\) da matriz representa a contagem de instâncias conhecidas como pertencentes à classe \(i\), mas previstas como classe \(j\).
+
+\subsection{Matriz de Confusão para Classificação Multiclasse}
+
+Na classificação multiclasse, a matriz de confusão é estendida para acomodar múltiplas classes. Ela fornece uma representação tabular das classes previstas em relação às classes reais, ajudando a identificar o desempenho do modelo em diferentes classes. Denotando \(C\) como o número de classes, a matriz de confusão para classificação multiclasse é composta por \(C \times C\) células, onde cada linha corresponde às instâncias em uma classe real e cada coluna corresponde às instâncias em uma classe prevista.
+
+\begin{table}[h]
+\centering
+\caption{Matriz de confusão para classificação multiclasse}
+\label{tab:confusion_matrix_multiclass}
+\begin{tabular}{c|c|c|c|c}
+\multicolumn{1}{c}{} & \multicolumn{4}{c}{\textbf{Classe Prevista}} \\ \cline{2-5} 
+\multicolumn{1}{c|}{} & \textbf{Classe 1} & \textbf{Classe 2} & \textbf{...} & \textbf{Classe \(C\)} \\ \hline
+\rowcolor{gray!25} \textbf{Classe 1} & \cellcolor{green!25} \(TP_{11}\) & \(FP_{12}\) & \textbf{...} & \(FP_{1C}\) \\ \hline
+\rowcolor{gray!25} \textbf{Classe 2} & \(FP_{21}\) & \cellcolor{green!25} \(TP_{22}\) & \textbf{...} & \(FP_{2C}\) \\ \hline
+\rowcolor{
+gray!25} \textbf{...} & \textbf{...} & \textbf{...} & \cellcolor{green!25} \textbf{...} & \textbf{...} \\ \hline
+\rowcolor{gray!25} \textbf{Classe \(C\)} & \(FP_{C1}\) & \(FP_{C2}\) & \textbf{...} & \cellcolor{green!25} \(TP_{CC}\) \\ \hline
+\end{tabular}
+\end{table}
+
+Nesta matriz:
+\begin{itemize}
+    \item \(TP_{ii}\) (\textit{Verdadeiros Positivos}) representa as instâncias corretamente previstas como classe \(i\).
+    \item \(FP_{ij}\) (\textit{Falsos Positivos}) representa as instâncias previstas como classe \(i\) quando a classe real é \(j\).
+    \item \(FN_{ij}\) (\textit{Falsos Negativos}) representa as instâncias da classe \(i\) previstas como outras classes.
+\end{itemize}
+
+Cada elemento \(C_{ij}\) da matriz representa a contagem de instâncias conhecidas como pertencentes à classe \(i\), mas previstas como classe \(j\).
+
+
+\subsection{Matriz de Confusão para Classificação Multiclasse}
+
+Na classificação multiclasse, a matriz de confusão é estendida para acomodar múltiplas classes. Ela fornece uma representação tabular das classes previstas em relação às classes reais, ajudando a identificar o desempenho do modelo em diferentes classes. Denotando \(C\) como o número de classes, a matriz de confusão para classificação multiclasse é composta por \(C \times C\) células, onde cada linha corresponde às instâncias em uma classe real e cada coluna corresponde às instâncias em uma classe prevista.
+
+\begin{table}[h]
+\centering
+\caption{Matriz de confusão para classificação multiclasse}
+\label{tab:confusion_matrix_multiclass}
+\begin{tabular}{c|c|c|c|c}
+\multicolumn{1}{c}{} & \multicolumn{4}{c}{\textbf{Classe Prevista}} \\ \cline{2-5} 
+\multicolumn{1}{c|}{} & \textbf{Classe 1} & \textbf{Classe 2} & \textbf{...} & \textbf{Classe \(C\)} \\ \hline
+\textbf{Classe 1} & \(TP_{11}\) & \(FP_{12}\) & ... & \(FP_{1C}\) \\ \hline
+\textbf{Classe 2} & \(FP_{21}\) & \(TP_{22}\) & ... & \(FP_{2C}\) \\ \hline
+\textbf{...} & ... & ... & ... & ... \\ \hline
+\textbf{Classe \(C\)} & \(FP_{C1}\) & \(FP_{C2}\) & ... & \(TP_{CC}\) \\ \hline
+\end{tabular}
+\end{table}
+
+Nesta matriz:
+\begin{itemize}
+    \item \(TP_{ii}\) (\textit{Verdadeiros Positivos}) representa as instâncias corretamente previstas como classe \(i\).
+    \item \(FP_{ij}\) (\textit{Falsos Positivos}) representa as instâncias previstas incorretamente como classe \(i\) quando a classe real é \(j\).
+\end{itemize}
+
+Cada elemento \(C_{ij}\) da matriz representa a contagem de instâncias conhecidas como pertencentes à classe \(i\), mas previstas como classe \(j\).
+
 
 \subsection{Acurácia para Classificação Multiclasse}
 
