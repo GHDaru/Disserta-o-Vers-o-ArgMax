@@ -976,50 +976,6 @@ para \(j = 1, 2, ..., J-1\) categorias. Este modelo é eficiente em lidar com ce
 
 A Regressão Logística destaca-se pela simplicidade de implementação e eficiência computacional, evitando a necessidade de ajustes e escalonamento prévio dos dados. Contudo, enfrenta limitações em cenários não-lineares e requer independência entre observações, o que implica considerações ao modelar com variáveis independentes para previsão \cite{kowsari2019text}.
 
-
-% \subsection{Florestas Aleatórias}
-
-% Florestas Aleatórias, introduzidas por Ho \cite{ho1995random}, são um método de aprendizado de máquina para classificação, regressão e outras tarefas, que operam construindo uma multitude de árvores de decisão no momento do treinamento e produzindo a classe que é o modo das classes (classificação) ou previsão média (regressão) das árvores individuais. Florestas aleatórias corrigem o hábito das árvores de decisão de se ajustarem demais ao seu conjunto de treinamento \cite{breiman2001random}.
-
-% A principal característica das Florestas Aleatórias é sua habilidade de construir um conjunto de árvores de decisão com amostras de treinamento selecionadas aleatoriamente. Além disso, em cada divisão de um nó durante a construção da árvore, a seleção dos atributos é realizada com base em um subconjunto aleatório de atributos, diferentemente das árvores de decisão que consideram todos os atributos disponíveis. Essa aleatoriedade ajuda a aumentar a diversidade entre as árvores, resultando em um modelo mais robusto e menos propenso ao sobreajuste.
-
-% As Florestas Aleatórias são particularmente apreciadas por sua simplicidade e eficácia, sendo capazes de lidar com dados de alta dimensão e fornecer estimativas de importância de variáveis, o que pode ser útil para a seleção de características. Além disso, elas podem ser utilizadas para tarefas de classificação e regressão, tornando-as uma ferramenta versátil no arsenal de técnicas de aprendizado de máquina \cite{gasparetto2022survey}.
-
-% \cite{gasparetto2022survey} destacam a eficácia das Florestas Aleatórias na classificação de textos, notando que elas oferecem um bom desempenho mesmo em cenários onde o número de características é significativamente maior que o número de amostras de treinamento. Isso se deve à sua capacidade de reduzir a variância sem aumentar significativamente o viés, equilibrando assim o compromisso entre viés e variância.
-
-% Em resumo, as Florestas Aleatórias representam uma abordagem poderosa e flexível para o problema de classificação de textos, com a vantagem adicional de fornecer insights sobre a importância das características utilizadas para a tomada de decisão.
-
-% \subsection{Redes Neurais}
-
-% Redes Neurais têm demonstrado desempenho significativo na modelagem de documentos e frases para a classificação de textos. Existem dois tipos principais de redes neurais utilizadas para essas tarefas: a Rede Neural Convolucional (CNN) e a Rede Neural Recorrente (RNN), \cite{bhavani2021review}
-
-% \subsubsection{Rede Neural Convolucional (CNN)}
-
-% A CNN utiliza filtros em diferentes janelas, com tamanhos variados, para as características dos documentos. Esses filtros são usados para classificar as características, gerando vetores de tags de palavras. A camada de entrada extrai diferentes características usando um kernel ou filtro, que é uma convolução. A convolução utiliza o produto escalar de vetores, exibindo um resultado como zero quando o texto pertence à mesma classe. Vetores de palavras embutidos são usados para encontrar a similaridade entre vetores, e esta filtragem é utilizada para contar o número de filtros na convolução, dependendo das necessidades do usuário. Após a convolução, o filtro gera múltiplas características, que são então processadas por uma função de ativação, exibindo a saída com uma relação não linear sobre a saída. Essas convoluções são reduzidas dimensionalmente para diminuir a complexidade e o tempo computacional, \cite{bhavani2021review}
-
-% \subsubsection{Rede Neural Recorrente (RNN)}
-
-% A RNN é um modelo sequencial que lida com sequências de documentos de comprimento variável e dependências de longo prazo. Estas redes utilizam a rede de memória de curto e longo prazo (LSTM) para extrair sequências de características de tags de nível superior.
-
-% Ambas as redes, CNN e RNN, são fundamentais na classificação de textos, oferecendo métodos robustos para lidar com a complexidade e variabilidade dos dados de texto. A capacidade das CNNs de paralelizar bem e lidar com textos longos, em contraste com a habilidade das RNNs de gerenciar dependências semânticas de longo prazo, destaca a diversidade de aplicações e a eficácia dessas redes neurais na classificação de textos, \cite{bhavani2021review}
-
-% \subsection{Aprendizado por Comitê (Ensemble Learning)}
-
-% Métodos de aprendizado de conjunto, também conhecidos como métodos de integração, agregam os resultados de múltiplos algoritmos para obter melhor desempenho e interpretação. Esses métodos são notáveis por sua capacidade de combinar as forças e compensar as fraquezas de diferentes modelos de aprendizado de máquina, resultando em uma solução mais robusta e confiável.
-
-% Os métodos de ensemble são divididos em várias subcategorias, sendo as mais populares o bagging e o boosting. O bagging, também referido como métodos de agregação de bootstrap, calcula a média da saída de múltiplos classificadores que são treinados independentemente em subconjuntos do conjunto de dados de treinamento (amostragem com reposição). Este processo melhora a precisão e a estabilidade do modelo, sendo as florestas aleatórias (Random Forests) um exemplo comum dessa abordagem \cite{gasparetto2022survey}.
-
-% Por outro lado, o boosting treina sequencialmente classificadores fracos com o objetivo de criar um ensemble forte. Cada classificador fraco repondera os pontos de dados com base em sua própria precisão, dando maior peso aos exemplos classificados incorretamente e menor aos corretamente classificados. Assim, os sucessores do classificador fraco focam nos pontos de dados "difíceis" que foram previamente classificados de forma errada. O AdaBoost é um exemplo clássico de algoritmo de boosting \cite{gasparetto2022survey}.
-
-% Esses métodos de ensemble são fundamentais para melhorar a robustez e a acurácia dos modelos de classificação, reduzindo o overfitting e fornecendo meios para lidar com conjuntos de dados complexos e desafiadores. O sucesso dos métodos de ensemble reside na sua capacidade de combinar diversas estratégias de aprendizado para formar um modelo mais poderoso e adaptável a diferentes tipos de problemas de classificação.
-
-
-% \subsection{Gradient Boosting} Essa é uma técnica de classificação baseada em múltiplos modelos de aprendizado de máquina fracos. Permite trabalhar com conjuntos de alta dimensionalidade. 
-
-% \subsection{Modelos de Linguagem Pré-Treinados} Esses são modelos de linguagem pré-treinados em grandes conjuntos de dados e que podem ser facilmente utilizados para tarefas de processamento de linguagem natural, como classificação de texto. Alguns exemplos de modelos de linguagem pré-treinados incluem o BERT, o GPT e o XLNet. 
-
-% Modelos baseados em instâncias: Esses são modelos de classificação de texto que aprendem a classificar novas instâncias de texto comparando-as com exemplos de texto rotulados previamente. Isso pode ser útil em situações em que o conjunto de dados de treinamento é pequeno ou quando é difícil obter rótulos para o conjunto de dados. 
-
 \section{Métricas de Avaliação}
 
 Métricas de avaliação são medidas que permitem avaliar o desempenho de algoritmos de aprendizado.  Na tarefa de classificação, conforme destacado por \cite{tharwat2018}, as métricas como acurácia, precisão, revocação, F1-score e a área sob a curva ROC (AUC) servem como base para avaliar o desempenho em contextos de classificação binária.  
@@ -1078,7 +1034,7 @@ O F1-Score é uma métrica que combina precisão e revocação em uma única med
 
 \subsection{Exemplo de Cálculos com a Matriz de Confusão}
 
-Nesta seção, apresentamos exemplos de cálculo para as métricas descritas usando uma matriz de confusão simplificada.
+Nesta seção, exemplos de cálculo para as métricas descritas são apresentados usando uma matriz de confusão simplificada.
 
 \begin{table}[h]
 \centering
@@ -1092,7 +1048,7 @@ Nesta seção, apresentamos exemplos de cálculo para as métricas descritas usa
 \end{tabular}
 \end{table}
 
-Para a matriz de confusão da Tabela \ref{tab:exemplo_matriz_confusao}, temos os seguintes cálculos:
+Para a matriz de confusão da Tabela \ref{tab:exemplo_matriz_confusao}, os seguintes cálculos são feitos:
 
 \textbf{Acurácia:}
 \[ \text{Acurácia} = \frac{\text{TP} + \text{TN}}{\text{Total de Exemplos}} = \frac{50 + 135}{200} = 0.925 = 92.5\% \]
@@ -1106,206 +1062,21 @@ Para a matriz de confusão da Tabela \ref{tab:exemplo_matriz_confusao}, temos os
 \textbf{F1-Score:}
 \[ \text{F1-Score} = 2 \times \frac{\text{Precisão} \times \text{Revocação}}{\text{Precisão} + \text{Revocação}} = 2 \times \frac{0.8333 \times 0.9091}{0.8333 + 0.9091} = 0.8671 = 86.71\% \]
 
-
-\subsection{Matriz de Confusão}
-
-A matriz de confusão é uma ferramenta importante para avaliar o desempenho de modelos de classificação, especialmente em problemas de classificação binária, onde existem apenas duas classes possíveis para cada instância. Como apresentado na Tabela \ref{tab:confusao}, a matriz de confusão é composta por quatro células:
-
-\begin{itemize}
-    \item Verdadeiros Positivos (TP) representam as instâncias positivas corretamente identificadas.
-    \item Falsos Positivos (FP) são as instâncias negativas incorretamente identificadas como positivas.
-    \item Falsos Negativos (FN) são as instâncias positivas incorretamente identificadas como negativas.
-    \item Verdadeiros Negativos (TN) representam as instâncias negativas corretamente identificadas.
-\end{itemize}
-
 \begin{table}[h]
 \centering
-\caption{Matriz de confusão para um modelo de classificação binária}
-\label{tab:confusao}
-\begin{tabular}{c|cc}
-\multicolumn{1}{c}{\textbf{Classe Real}} & \multicolumn{2}{c}{\textbf{Classe Prevista}} \\ \cline{2-3}
-\multicolumn{1}{c|}{} & \textbf{Positivo} & \textbf{Negativo} \\ \hline
-\multicolumn{1}{c|}{\textbf{Positivo}} & \cellcolor{green!25}TP & \cellcolor{red!25}FN \\
-\multicolumn{1}{c|}{\textbf{Negativo}} & \cellcolor{red!25}FP & \cellcolor{green!25}TN \\ \hline
+\caption{Resumo das métricas calculadas}
+\label{tab:resumo_metricas}
+\begin{tabular}{c|c}
+\hline
+\textbf{Métrica} & \textbf{Valor} \\ \hline
+Acurácia & 92.5\% \\ \hline
+Precisão & 83.33\% \\ \hline
+Revocação & 90.91\% \\ \hline
+F1-Score & 86.71\% \\ \hline
 \end{tabular}
 \end{table}
 
-A seguir apresenta-se as medidas derivadas da matriz de confusão acurácia, precisão, revocação e F1-Score. 
-
-\subsubsection{Acurácia}
-A acurácia é a porcentagem de previsões corretas feitas pelo modelo. Ela é dada pela equação (\ref{eq:accuracy}):
-\begin{equation}
-\text{Acurácia} = \frac{\text{Verdadeiros Positivos} + \text{Verdadeiros Negativos}}{\text{Total de Exemplos}} \label{eq:accuracy}
-\end{equation}
-
-\begin{table}[h]
-\centering
-\caption{Exemplo de cálculo da acurácia usando uma matriz de confusão}
-\label{tab:exemplo_acuracia}
-\begin{tabular}{c|cc}
-\multicolumn{1}{c}{\textbf{Classe Real}} & \multicolumn{2}{c}{\textbf{Classe Prevista}} \\ \cline{2-3}
-\multicolumn{1}{c}{} & \textbf{Positivo} & \textbf{Negativo} \\ \hline
-\multicolumn{1}{c}{\textbf{Positivo}} & \cellcolor{green!25}50 (TP) & \cellcolor{red!25}5 (FN) \\
-\multicolumn{1}{c}{\textbf{Negativo}} & \cellcolor{red!25}10 (FP) & \cellcolor{green!25}135 (TN) \\ \hline
-\end{tabular}
-\end{table}
-
-A tabela \ref{tab:exemplo_acuracia} apresenta um exemplo de cálculo da acurácia usando uma matriz de confusão. A acurácia, que é uma medida de desempenho do modelo, é dada pela fórmula:
-
-\[ \text{Acurácia} = \frac{\text{TP} + \text{TN}}{\text{Total de Exemplos}} = \frac{50 + 135}{200} = 0.925 = 92.5\%\]
-
-Isto implica que o modelo acerta de maneira geral 92.5\%.
-
-\subsubsection{Precisão}
-
-A precisão é a proporção de verdadeiros positivos em relação ao total de previsões positivas feitas pelo modelo. É uma visão por coluna, com foco em afirmar, dado o que é dito que é positivo, quantas amostras realmente o são.  Ela é dada pela equação (\ref{eq:precision}):
-
-\begin{equation}
-\text{Precisão} = \frac{\text{Verdadeiros Positivos}}{\text{Verdadeiros Positivos} + \text{Falsos Positivos}} \label{eq:precision}
-\end{equation}
-
-\begin{table}[h]
-\centering
-\caption{Exemplo de cálculo da precisão usando uma matriz de confusão}
-\label{tab:exemplo_precisao}
-\begin{tabular}{c|cc}
-\multicolumn{1}{c}{\textbf{Classe Real}} & \multicolumn{2}{c}{\textbf{Classe Prevista}} \\ \cline{2-3}
-\multicolumn{1}{c}{} & \textbf{Positivo} $\downarrow$& \textbf{Negativo} \\ \hline
-\multicolumn{1}{c}{\textbf{Positivo}} & \cellcolor{green!25}50 (TP) & \cellcolor{red!25}5 (FN) \\
-\multicolumn{1}{c}{\textbf{Negativo}} & \cellcolor{red!25}10 (FP)  & \cellcolor{green!25}135 (TN) \\ \hline
-\end{tabular}
-\end{table}
-
-A tabela \ref{tab:exemplo_precisao} apresenta um exemplo de cálculo da precisão usando uma matriz de confusão. A precisão é dada pela fórmula:
-
-\[ \text{Precisão} = \frac{\text{TP}}{\text{TP} + \text{FP}} \]
-
-Substituindo com os valores do exemplo:
-
-\[ \text{Precisão} = \frac{50}{50 + 10} = \frac{50}{60} = 0.8333 \]
-
-Portanto, a precisão deste modelo é de 83.33\%, ou seja, daquilo que o modelo diz que é positivo, 83,33\% o é.
-
-\subsubsection{Revocação}
-
-A revocação é a proporção de verdadeiros positivos em relação ao total de exemplos positivos existentes. Ela é uma métrica que mede a capacidade do modelo de identificar corretamente todos os exemplos relevantes de uma classe. Em outras palavras, ela mede a taxa de detecção do modelo para uma classe específica, ou seja, visão por linha.
-
-A revocação é dada pela equação (\ref{eq:recall}):
-
-\begin{equation}
-\text{Revocação} = \frac{\text{Verdadeiros Positivos}}{\text{Verdadeiros Positivos} + \text{Falsos Negativos}} \label{eq:recall}
-\end{equation}
-
-\begin{table}[h]
-\centering
-\caption{Exemplo de cálculo da revocação usando uma matriz de confusão}
-\label{tab:exemplo_revocacao}
-\begin{tabular}{c|cc}
-\multicolumn{1}{c}{\textbf{Classe Real}} & \multicolumn{2}{c}{\textbf{Classe Prevista}} \\ \cline{2-3}
-\multicolumn{1}{c}{} & \textbf{Positivo}  & \textbf{Negativo} \\ \hline
-\multicolumn{1}{c}{\textbf{Positivo} $\rightarrow$} & \cellcolor{green!25}50 (TP) & \cellcolor{red!25}5 (FN) \\
-\multicolumn{1}{c}{\textbf{Negativo}} & \cellcolor{red!25}10 (FP)  & \cellcolor{green!25}135 (TN) \\ \hline
-\end{tabular}
-\end{table}
-
-A tabela \ref{tab:exemplo_revocacao} apresenta um exemplo de cálculo da revocação usando uma matriz de confusão. A revocação é dada pela fórmula:
-
-\[ \text{Revocação} = \frac{\text{TP}}{\text{TP} + \text{FN}} \]
-
-Substituindo com os valores do exemplo:
-
-\[ \text{Revocação} = \frac{50}{50 + 5} = \frac{50}{55} = 0.9091 \]
-
-Portanto, a revocação deste modelo é de 90.91\%, ou seja, ele é capaz de recuperar corretamente 90.91\% dos exemplos positivos existentes.  O mesmo poderia ser feito para a classe negativa, obtendo-se 135/145 ou 93,1\%.
-
-
-
-\subsubsection{F1-Score}
-
-O F1-Score é uma métrica que combina precisão e revocação em uma única medida. Ele fornece uma maneira de avaliar a qualidade do modelo considerando tanto os falsos positivos quanto os falsos negativos. O F1-Score é especialmente útil quando as classes estão desbalanceadas.
-
-O F1-Score é dado pela fórmula (\ref{eq:f1score}):
-
-\begin{equation}
-\text{F1-Score} = 2 \times \frac{\text{Precisão} \times \text{Revocação}}{\text{Precisão} + \text{Revocação}} \label{eq:f1score}
-\end{equation}
-
-A tabela \ref{tab:exemplo_f1score} apresenta um exemplo de cálculo do F1-Score usando uma matriz de confusão. O objetivo do F1-Score é encontrar um equilíbrio entre a precisão (capacidade do modelo de não classificar incorretamente uma amostra negativa como positiva) e a revocação (capacidade do modelo de encontrar todas as amostras positivas). Em outras palavras, o F1-Score busca um ponto ótimo entre as medidas de precisão e revocação.
-
-\begin{table}[h]
-\centering
-\caption{Exemplo de cálculo do F1-Score usando uma matriz de confusão}
-\label{tab:exemplo_f1score}
-\begin{tabular}{c|cc}
-\multicolumn{1}{c}{\textbf{Classe Real}} & \multicolumn{2}{c}{\textbf{Classe Prevista}} \\ \cline{2-3}
-\multicolumn{1}{c}{} & \textbf{Positivo}  & \textbf{Negativo} \\ \hline
-% \multicolumn{1}{c}{\textbf{Positivo} $\rightarrow$} & \cellcolor{green!25}50 (TP) & \cellcolor{red!25}5 (FN) \\
-% \multicolumn{1}{c}{\textbf{Negativo}} & \cellcolor{red!25}10 (FP)  & \cellcolor{green!25}135 (TN) \\ \hline
-\end{tabular}
-\end{table}
-
-O F1-Score é calculado a partir da precisão e da revocação, fornecendo uma única medida que representa o equilíbrio entre a capacidade do modelo de evitar falsos positivos e a capacidade do modelo de encontrar todos os positivos relevantes.
-
-\[
-\text{F1-Score} = 2 \times \frac{0.8333 \times 0.9091}{0.8333 + 0.9091} = 2 \times \frac{0.7576}{1.7424} = 0.8671
-\]
-
-Portanto, o F1-Score deste modelo é de 0.8671.
-
-\subsection{Matriz de Confusão para Classificação Multiclasse}
-
-Na classificação multiclasse, a matriz de confusão é estendida para acomodar múltiplas classes. Ela fornece uma representação tabular das classes previstas em relação às classes reais, ajudando a identificar o desempenho do modelo em diferentes classes. Denotando \(C\) como o número de classes, a matriz de confusão para classificação multiclasse é composta por \(C \times C\) células, onde cada linha corresponde às instâncias em uma classe real e cada coluna corresponde às instâncias em uma classe prevista.
-
-\begin{table}[h]
-\centering
-\caption{Matriz de confusão para classificação multiclasse}
-\label{tab:confusion_matrix_multiclass}
-\begin{tabular}{c|c|c|c|c}
-\multicolumn{1}{c}{} & \multicolumn{4}{c}{\textbf{Classe Prevista}} \\ \cline{2-5} 
-\multicolumn{1}{c|}{} & \textbf{Classe 1} & \textbf{Classe 2} & \textbf{...} & \textbf{Classe \(C\)} \\ \hline
- \rowcolor{red!25}  \textbf{Classe 1} & \cellcolor{green!25} \(TP_{11}\) & \(FP_{12}\) & ... & \(FP_{1C}\) \\ \hline
-\rowcolor{red!25} \textbf{Classe 2} & \(FP_{21}\) & \cellcolor{green!25} \(TP_{22}\) & ... & \(FP_{2C}\) \\ \hline
-\rowcolor{red!25} \textbf{...} & ... & ... & \cellcolor{green!25} ... & ... \\ \hline
-\rowcolor{red!25} \textbf{Classe \(C\)} & \(FP_{C1}\) & \(FP_{C2}\) & ... & \cellcolor{green!25} \(TP_{CC}\) \\ \hline
-\end{tabular}
-\end{table}
-
-Nesta matriz:
-\begin{itemize}
-    \item \(TP_{ij}\) (\textit{Verdadeiros Positivos}) representa as instâncias corretamente previstas como classe \(i\).
-    \item \(FP_{ij}\) (\textit{Falsos Positivos}) representa as instâncias incorretamente previstas como classe \(i\) quando a classe real é \(j\).
-    \item \(FN_{ij}\) (\textit{Falsos Negativos}) representa as instâncias incorretamente previstas como outras classes quando a classe real é \(i\).
-\end{itemize}
-
-Cada elemento \(C_{ij}\) da matriz representa a contagem de instâncias conhecidas como pertencentes à classe \(i\), mas previstas como classe \(j\).
-
-\subsection{Matriz de Confusão para Classificação Multiclasse}
-
-Na classificação multiclasse, a matriz de confusão é estendida para acomodar múltiplas classes. Ela fornece uma representação tabular das classes previstas em relação às classes reais, ajudando a identificar o desempenho do modelo em diferentes classes. Denotando \(C\) como o número de classes, a matriz de confusão para classificação multiclasse é composta por \(C \times C\) células, onde cada linha corresponde às instâncias em uma classe real e cada coluna corresponde às instâncias em uma classe prevista.
-
-\begin{table}[h]
-\centering
-\caption{Matriz de confusão para classificação multiclasse}
-\label{tab:confusion_matrix_multiclass}
-\begin{tabular}{c|c|c|c|c}
-\multicolumn{1}{c}{} & \multicolumn{4}{c}{\textbf{Classe Prevista}} \\ \cline{2-5} 
-\multicolumn{1}{c|}{} & \textbf{Classe 1} & \textbf{Classe 2} & \textbf{...} & \textbf{Classe \(C\)} \\ \hline
-\rowcolor{gray!25} \textbf{Classe 1} & \cellcolor{green!25} \(TP_{11}\) & \(FP_{12}\) & \textbf{...} & \(FP_{1C}\) \\ \hline
-\rowcolor{gray!25} \textbf{Classe 2} & \(FP_{21}\) & \cellcolor{green!25} \(TP_{22}\) & \textbf{...} & \(FP_{2C}\) \\ \hline
-\rowcolor{
-gray!25} \textbf{...} & \textbf{...} & \textbf{...} & \cellcolor{green!25} \textbf{...} & \textbf{...} \\ \hline
-\rowcolor{gray!25} \textbf{Classe \(C\)} & \(FP_{C1}\) & \(FP_{C2}\) & \textbf{...} & \cellcolor{green!25} \(TP_{CC}\) \\ \hline
-\end{tabular}
-\end{table}
-
-Nesta matriz:
-\begin{itemize}
-    \item \(TP_{ii}\) (\textit{Verdadeiros Positivos}) representa as instâncias corretamente previstas como classe \(i\).
-    \item \(FP_{ij}\) (\textit{Falsos Positivos}) representa as instâncias previstas como classe \(i\) quando a classe real é \(j\).
-    \item \(FN_{ij}\) (\textit{Falsos Negativos}) representa as instâncias da classe \(i\) previstas como outras classes.
-\end{itemize}
-
-Cada elemento \(C_{ij}\) da matriz representa a contagem de instâncias conhecidas como pertencentes à classe \(i\), mas previstas como classe \(j\).
+As métricas calculadas são resumidas na Tabela \ref{tab:resumo_metricas}. Esta tabela resumo fornece uma visão geral dos valores de desempenho obtidos, facilitando a análise comparativa e a interpretação dos resultados.
 
 
 \subsection{Matriz de Confusão para Classificação Multiclasse}
@@ -1329,75 +1100,88 @@ Na classificação multiclasse, a matriz de confusão é estendida para acomodar
 Nesta matriz:
 \begin{itemize}
     \item \(TP_{ii}\) (\textit{Verdadeiros Positivos}) representa as instâncias corretamente previstas como classe \(i\).
-    \item \(FP_{ij}\) (\textit{Falsos Positivos}) representa as instâncias previstas incorretamente como classe \(i\) quando a classe real é \(j\).
+    \item \(FP_{ij}\) (\textit{Falsos Positivos}) representa as instâncias previstas incorretamente como classe \(j\) quando a classe real é \(i\).
 \end{itemize}
 
 Cada elemento \(C_{ij}\) da matriz representa a contagem de instâncias conhecidas como pertencentes à classe \(i\), mas previstas como classe \(j\).
 
+\subsubsection{Métricas de Desempenho para Classificação Multiclasse}
 
-\subsection{Acurácia para Classificação Multiclasse}
+\paragraph{Acurácia}
 
 A acurácia na classificação multiclasse é medida pela proporção de instâncias corretamente previstas em relação ao total de instâncias em todas as classes. Ela é calculada da seguinte forma:
 
 \[
-ACC = \frac{\sum_{i=1}^{C} TP_{ii}}{\sum_{i=1}^{C} \sum_{j=1}^{C} C_{ij}}
+\text{Acurácia} = \frac{\sum_{i=1}^{C} TP_{ii}}{\sum_{i=1}^{C} \sum_{j=1}^{C} C_{ij}}
 \]
 
-A acurácia fornece uma avaliação geral do desempenho do modelo, mas pode não ser suficiente para conjuntos de dados desbalanceados.
-
-
-
-\subsection{Precisão, Revocação e F1-Score para Classificação Multiclasse}
-
-Na classificação multiclasse, a precisão, a revocação e o F1-Score podem ser calculados para cada classe separadamente e depois serem agregados.
-
-\subsubsection{Precisão}
-
+\paragraph{Precisão}
 A precisão para a classe \(i\) (\(P_i\)) é a proporção de verdadeiros positivos para a soma de verdadeiros positivos e falsos positivos para a classe \(i\):
 \[ P_i = \frac{TP_{ii}}{TP_{i1} + TP_{i2} + \ldots + TP_{iC}} \]
 
-\subsubsection{Revocação}
-
+\paragraph{Revocação}
 A revocação para a classe \(i\) (\(R_i\)) é a proporção de verdadeiros positivos para a soma de verdadeiros positivos e falsos negativos para a classe \(i\):
 \[ R_i = \frac{TP_{ii}}{TP_{i1} + TP_{i2} + \ldots + TP_{iC}} \]
 
-\subsubsection{F1-Score}
-
+\paragraph{F1-Score}
 O F1-Score para a classe \(i\) (\(F1_i\)) é a média harmônica da precisão e da revocação para a classe \(i\):
 \[ F1_i = 2 \times \frac{P_i \times R_i}{P_i + R_i} \]
 
 Essas métricas fornecem métricas sobre o desempenho do modelo para cada classe e são particularmente úteis quando as classes estão desbalanceadas.
 
-\subsection{Médias Macro e Micro para Classificação Multiclasse}
+\subsubsection{Médias Macro e Micro para Classificação Multiclasse}
 
-As médias macro e micro fornecem medidas de desempenho agregadas em todas as classes.
+As métricas macro e micro são usadas para fornecer diferentes perspectivas sobre o desempenho de um modelo de classificação, especialmente em cenários de classificação multiclasse e em situações onde há desequilíbrio entre as classes. A principal diferença entre essas métricas reside na forma como elas agregam os resultados das diferentes classes.
 
-\subsubsection{Precisão Macro}
+\paragraph{Macro Médias}
+As macro médias calculam a métrica de interesse para cada classe individualmente e, em seguida, tiram a média dessas métricas. Em termos teóricos:
 
+\begin{itemize}
+    \item \textbf{Igualdade de Classes}: Cada classe recebe igual peso na média, independentemente do número de instâncias em cada classe.
+    \item \textbf{Sensibilidade ao Desequilíbrio de Classes}: As macro médias são mais sensíveis a desequilíbrios entre classes. Se uma classe tiver um desempenho muito ruim ou muito bom, isso impactará significativamente a média, mesmo que a classe seja pequena.
+    \item \textbf{Foco em Classes Individuais}: As macro métricas são úteis quando se quer avaliar o desempenho do modelo em cada classe individualmente e tratar todas as classes com igual importância.
+\end{itemize}
+
+\paragraph{Micro Médias}
+As micro médias, por outro lado, agregam todas as instâncias das diferentes classes antes de calcular a métrica de interesse. Em termos teóricos:
+
+\begin{itemize}
+    \item \textbf{Proporcionalidade de Instâncias}: Cada instância individual tem igual peso, independentemente da classe a que pertence.
+    \item \textbf{Menor Sensibilidade ao Desequilíbrio de Classes}: Como todas as instâncias são tratadas igualmente, as métricas micro são menos sensíveis ao desequilíbrio entre classes. Isso pode mascarar o desempenho ruim em classes menores se a maioria das instâncias pertencer a uma ou poucas classes maiores.
+    \item \textbf{Foco no Desempenho Global}: As micro métricas são úteis para obter uma visão geral do desempenho do modelo em todo o conjunto de dados, destacando a capacidade do modelo de classificar corretamente a maior parte das instâncias.
+\end{itemize}
+
+\paragraph{Precisão Macro}
 A precisão macro é a média da precisão em todas as classes, tratando cada classe igualmente:
-\[ \text{Precisão Macro} = \frac{\sum_{i=1}^{C} P_i}{C} \]
+\[ \text{Precisão Macro} = \frac{\sum_{i=1}^{C} P_i}{C} = \frac{\sum_{i=1}^{C} \frac{TP_{ii}}{TP_{ii} + FP_{ij}}}{C} \]
 
-\subsubsection{Precisão Micro}
+\paragraph{Revocação Macro}
+A revocação macro é a média da revocação em todas as classes, tratando cada classe igualmente:
+\[ \text{Revocação Macro} = \frac{\sum_{i=1}^{C} R_i}{C} = \frac{\sum_{i=1}^{C} \frac{TP_{ii}}{TP_{ii} + FN_{ij}}}{C} \]
 
-A precisão micro agrega as contribuições de todas as classes para calcular a precisão média:
-\[ \text{Precisão Micro} = \frac{\sum_{i=1}^{C} TP_{ii}}{\sum_{i=1}^{C} \sum_{j=1}^{C} C_{ij}} \]
+\paragraph{F1-Score Macro}
+O F1-Score macro é a média do F1-Score em todas as classes, tratando cada classe igualmente:
+\[ \text{F1-Score Macro} = \frac{\sum_{i=1}^{C} F1_i}{C} = \frac{\sum_{i=1}^{C} 2 \times \frac{P_i \times R_i}{P_i + R_i}}{C} \]
 
-As médias macro e micro fornecem uma compreensão abrangente do desempenho do modelo, especialmente na presença de desbalanceamento de classes.
+\paragraph{Precisão, Revocação e F1-Score Micro}
+A precisão, revocação e F1-Score possuem a mesma fórmula que a acurácia.
+\[ \text{Métricas Micro} = \frac{\sum_{i=1}^{C} TP_{ii}}{\sum_{i=1}^{C} \sum_{j=1}^{C} C_{ij}} \]
+
 
 \subsection{Exemplo de Cálculo de Métricas para Avaliação de Classificação Multiclasse}
 
-Para ilustrar o cálculo, a tabela \ref{tab:confusion_matrix_multiclass_example} contém um conjunto de exemplo de dados.
+Para ilustrar o cálculo, a Tabela \ref{tab:confusion_matrix_multiclass_example} contém um conjunto de exemplo de dados.
 
 \begin{table}[h]
 \centering
-\caption{Matriz de confusão para classificação multiclasse}
+\caption{Exemplo de matriz de confusão para classificação multiclasse}
 \label{tab:confusion_matrix_multiclass_example}
-\begin{tabular}{c|c|c|c|c}
-\multicolumn{1}{c}{} & \multicolumn{4}{c}{\textbf{Classe Prevista}} \\ \cline{2-5} 
+\begin{tabular}{c|c|c|c}
+\multicolumn{1}{c}{} & \multicolumn{3}{c}{\textbf{Classe Prevista}} \\ \cline{2-4} 
 \multicolumn{1}{c|}{} & \textbf{Classe 1} & \textbf{Classe 2} & \textbf{Classe 3} \\ \hline
-\rowcolor{red!25} \textbf{Classe 1} & \cellcolor{green!25}TP$_{11}$ (60) & \cellcolor{red!25}FP$_{12}$ (25) & \cellcolor{red!25}FP$_{13}$ (15) \\ \hline
-\rowcolor{red!25} \textbf{Classe 2} & \cellcolor{red!25}FP$_{21}$ (10) & \cellcolor{green!25}TP$_{22}$ (35) & \cellcolor{red!25}FP$_{23}$ (5) \\ \hline
-\rowcolor{red!25} \textbf{Classe 3} & \cellcolor{red!25}FP$_{31}$ (1) & \cellcolor{red!25}FP$_{32}$ (1) & \cellcolor{green!25}TP$_{33}$ (8) \\ \hline
+\textbf{Classe 1} & 60 & 25 & 15 \\ \hline
+\textbf{Classe 2} & 10 & 35 & 5 \\ \hline
+\textbf{Classe 3} & 1 & 1 & 8 \\ \hline
 \end{tabular}
 \end{table}
 
@@ -1405,7 +1189,7 @@ A soma total das instâncias é \(60 + 25 + 15 + 10 + 35 + 5 + 1 + 1 + 8 = 160\)
 
 A acurácia (\(ACC\)) é calculada pela soma dos verdadeiros positivos dividida pela soma total de instâncias em todas as classes:
 
-\[ ACC = \frac{TP_{11} + TP_{22} + TP_{33}}{160} = \frac{60 + 35 + 8}{160} \approx 0.6438 \]
+\[ \text{Acurácia} = \frac{TP_{11} + TP_{22} + TP_{33}}{160} = \frac{60 + 35 + 8}{160} \approx 0.6438 \]
 
 Portanto, a acurácia deste modelo é aproximadamente 64.38\%.
 
@@ -1413,30 +1197,22 @@ Portanto, a acurácia deste modelo é aproximadamente 64.38\%.
 
 \begin{table}[h]
 \centering
-\caption{Métricas de Avaliação por Classe Detalhadas}
+\caption{Métricas de Avaliação por Classe}
 \label{tab:detailed_evaluation_metrics}
 \begin{tabular}{|c|c|c|c|}
 \hline
 \textbf{Classe} & \textbf{Precisão} & \textbf{Revocação} & \textbf{F1-Score} \\
 \hline
-\multirow{3}{*}{Classe 1} & \(\frac{TP_{11}}{TP_{11} + FP_{12} + FP_{13}}\) & \(\frac{TP_{11}}{TP_{11} + FN_{21} + FN_{31}}\) & \(2 \cdot \frac{P \cdot R}{P + R}\) \\
- & \(\frac{60}{60 + 25 + 15}\) & \(\frac{60}{60 + 10 + 1}\) & \(2 \cdot \frac{0.60 \cdot 0.85}{0.60 + 0.85}\) \\
- & \(0.60\) & \(0.85\) & \(0.70\) \\
+Classe 1 & \( \frac{60}{60 + 25 + 15} = 0.60 \) & \( \frac{60}{60 + 10 + 1} = 0.85 \) & \( 2 \times \frac{0.60 \times 0.85}{0.60 + 0.85} = 0.70 \) \\
 \hline
-\multirow{3}{*}{Classe 2} & \(\frac{TP_{22}}{TP_{22} + FP_{21} + FP_{23}}\) & \(\frac{TP_{22}}{TP_{22} + FN_{12} + FN_{32}}\) & \(2 \cdot \frac{P \cdot R}{P + R}\) \\
- & \(\frac{35}{35 + 10 + 5}\) & \(\frac{35}{35 + 25 + 1}\) & \(2 \cdot \frac{0.70 \cdot 0.57}{0.70 + 0.57}\) \\
- & \(0.70\) & \(0.57\) & \(0.63\) \\
+Classe 2 & \( \frac{35}{35 + 10 + 5} = 0.70 \) & \( \frac{35}{35 + 25 + 1} = 0.57 \) & \( 2 \times \frac{0.70 \times 0.57}{0.70 + 0.57} = 0.63 \) \\
 \hline
-\multirow{3}{*}{Classe 3} & \(\frac{TP_{33}}{TP_{33} + FP_{31} + FP_{32}}\) & \(\frac{TP_{33}}{TP_{33} + FN_{13} + FN_{23}}\) & \(2 \cdot \frac{P \cdot R}{P + R}\) \\
- & \(\frac{8}{8 + 1 + 1}\) & \(\frac{8}{8 + 15 + 5}\) & \(2 \cdot \frac{0.80 \cdot 0.29}{0.80 + 0.29}\) \\
- & \(0.80\) & \(0.29\) & \(0.42\) \\
+Classe 3 & \( \frac{8}{8 + 1 + 1} = 0.80 \) & \( \frac{8}{8 + 15 + 5} = 0.29 \) & \( 2 \times \frac{0.80 \times 0.29}{0.80 + 0.29} = 0.42 \) \\
 \hline
 \end{tabular}
 \end{table}
 
-
-
-Para calcular as médias macro e micro das métricas, considera-se:
+\subsubsection{Médias Macro e Micro das Métricas}
 
 \begin{table}[h]
 \centering
@@ -1446,32 +1222,34 @@ Para calcular as médias macro e micro das métricas, considera-se:
 \hline
 \textbf{Métrica} & \textbf{Macro} & \textbf{Micro} \\
 \hline
-\multirow{3}{*}{Precisão} & \(\frac{P_1 + P_2 + P_3}{3}\) & \(\frac{\sum TP}{\sum TP + \sum FP}\) \\
- & \(\frac{0.60 + 0.70 + 0.80}{3}\) & \(\frac{60 + 35 + 8}{160}\) \\
- & \(0.70\) & \(0.64\) \\
+Precisão & \( \frac{0.60 + 0.70 + 0.80}{3} = 0.70 \) & \( \frac{60 + 35 + 8}{160} = 0.64 \) \\
 \hline
-\multirow{3}{*}{Revocação} & \(\frac{R_1 + R_2 + R_3}{3}\) & \(\frac{\sum TP}{\sum TP + \sum FN}\) \\
- & \(\frac{0.85 + 0.57 + 0.29}{3}\) & \(\frac{60 + 35 + 8}{160}\) \\
- & \(0.57\) & \(0.64\) \\
+Revocação & \( \frac{0.85 + 0.57 + 0.29}{3} = 0.57 \) & \( \frac{60 + 35 + 8}{160} = 0.64 \) \\
 \hline
-\multirow{3}{*}{F1-Score} & \(\frac{F1_1 + F1_2 + F1_3}{3}\) & \(2 \cdot \frac{\text{Precisão Micro} \cdot \text{Revocação Micro}}{\text{Precisão Micro} + \text{Revocação Micro}}\) \\
- & \(\frac{0.70 + 0.63 + 0.42}{3}\) & \(2 \cdot \frac{0.64 \cdot 0.64}{0.64 + 0.64}\) \\
- & \(0.58\) & \(0.64\) \\
+F1-Score & \( \frac{0.70 + 0.63 + 0.42}{3} = 0.58 \) & \( 2 \times \frac{0.64 \times 0.64}{0.64 + 0.64} = 0.64 \) \\
 \hline
 \end{tabular}
 \end{table}
 
-Como pode ser observado, todas as métricas micro recaem sobre o mesmo valor e conforme explicitado em \cite{grandini2020metrics} todas representam a acurácia do modelo.  Desta forma a indicação para avaliar modelos multiclasse é a combinação de uma medida mais geral como a acurácia e uma medida classe a classe.  Como a medida F1-Score contempla tanto a precisão quanto a revocação, é a medida indicada para avaliar o desempenho do modelo levando em conta todas as classes.
+Como pode ser observado, todas as métricas micro recaem sobre o mesmo valor e conforme explicitado em \cite{grandini2020metrics} todas representam a acurácia do modelo. Desta forma a indicação para avaliar modelos multiclasse é a combinação de uma medida mais geral como a acurácia e uma medida classe a classe. Como a medida F1-Score contempla tanto a precisão quanto a revocação, é a medida indicada para avaliar o desempenho do modelo levando em conta todas as classes.
 
 \section{Técnicas para Divisão do Conjunto de Dados para Avaliação}
 
-No aprendizado de máquina, a divisão dos conjuntos de dados em conjuntos de treinamento, validação e teste é uma metodologia crucial para avaliar o desempenho dos modelos. Esse processo, fundamentado por trabalhos seminais como os de \cite{kohavi1995study}, \cite{Breiman1984}, e \cite{hastie2009elements}, garante que os modelos não sejam apenas precisos nos dados de treinamento, mas também generalizem bem para dados não vistos. A divisão adequada do conjunto de dados ajuda na identificação e mitigação de overfitting e underfitting, aumentando assim a confiabilidade dos modelos de aprendizado de máquina.
+No aprendizado de máquina, a divisão dos conjuntos de dados em treinamento, validação e teste desempenha um papel importante na avaliação do desempenho dos modelos. Este processo, conforme demonstrado em trabalhos seminais como os de \cite{kohavi1995study}, \cite{Breiman1984}, e \cite{hastie2009elements}, ajuda a garantir que os modelos sejam precisos nos dados de treinamento e generalizem adequadamente para dados não vistos. A divisão apropriada do conjunto de dados permite identificar e mitigar problemas de overfitting e underfitting, o que contribui para aumentar a confiabilidade dos modelos de aprendizado de máquina.
+
 As principais técnicas consistem em:
-\textit{Validação Cruzada K-Fold} (\cite{kohavi1995study}): Uma técnica que envolve dividir o conjunto de dados em k dobras de tamanho igual. O modelo é treinado em k-1 dobras e testado na dobra restante. Esse processo é repetido k vezes, com cada dobra sendo usada exatamente uma vez como o conjunto de teste. A validação cruzada fornece uma estimativa mais robusta do desempenho do modelo, utilizando todo o conjunto de dados tanto para treinamento quanto para testes.
 
-\textit{Divisão Aleatória}: Este método envolve a partição aleatória do conjunto de dados em conjuntos de treinamento, validação e teste. Tipicamente, o conjunto de dados é dividido em 70\% para treinamento, 15\% para validação e 15\% para teste, embora essas proporções possam variar com base no tamanho do conjunto de dados e na complexidade do modelo.
+\textit{Validação Cruzada K-Fold} (\cite{kohavi1995study}): Esta técnica envolve dividir o conjunto de dados em \(k\) partes de tamanho igual. O modelo é treinado em \(k-1\) partes e testado na parte restante. Este processo é repetido \(k\) vezes, com cada parte sendo utilizada exatamente uma vez como conjunto de teste. A validação cruzada fornece uma estimativa mais robusta do desempenho do modelo, utilizando todo o conjunto de dados tanto para treinamento quanto para teste. A escolha do valor de \(k\) pode variar, mas \(k = 10\) é uma prática comum.
 
-\textit{Amostragem Estratificada}: Particularmente útil para conjuntos de dados com classes desbalanceadas. A amostragem estratificada garante que cada divisão do conjunto de dados contenha aproximadamente a mesma porcentagem de amostras de cada classe-alvo que o conjunto completo. Essa técnica mantém a distribuição de classes, o que é crucial para modelos treinados em conjuntos de dados desbalanceados.
+\textit{Divisão Aleatória}: Este método envolve a partição aleatória do conjunto de dados em conjuntos de treinamento, validação e teste. Tipicamente, o conjunto de dados é dividido em 70\% para treinamento, 15\% para validação e 15\% para teste, embora estas proporções possam variar conforme o tamanho do conjunto de dados e a complexidade do modelo. Este método pode não ser ideal para datasets desbalanceados, pois pode resultar em distribuições de classes não representativas nos subconjuntos.
 
-Na literatura sobre aprendizado de máquina, particularmente no contexto de avaliação de modelo por meio da validação cruzada k-fold, não existe uma resposta única para o número recomendado de partições. No entanto, é prática comum usar 10 dobras, conforme inicialmente sugerido por \cite{kohavi1995study} em seu trabalho seminal sobre estimativa de precisão de validação cruzada e seleção de modelo. Essa recomendação é baseada em evidências empíricas que indicam que a validação cruzada de 10 partições atinge um bom equilíbrio entre a obtenção de estimativas confiáveis do desempenho do modelo e a eficiência computacional.
+\textit{Amostragem Estratificada}: Esta técnica é particularmente útil para conjuntos de dados com classes desbalanceadas. A amostragem estratificada garante que cada divisão do conjunto de dados contenha aproximadamente a mesma proporção de amostras de cada classe-alvo que o conjunto completo. Preservar a distribuição de classes é desejado para a avaliação justa e precisa do desempenho de modelos treinados em conjuntos de dados desbalanceados.
+
+Na literatura de aprendizado de máquina, especialmente no contexto de avaliação de modelos por meio da validação cruzada k-fold, não há um consenso único sobre o número ideal de partições. No entanto, é prática comum usar 10 partes, conforme sugerido por \cite{kohavi1995study} em seu trabalho seminal sobre estimativa de precisão de validação cruzada e seleção de modelo, devido ao bom equilíbrio entre a precisão das estimativas de desempenho e a eficiência computacional. Esta recomendação é baseada em evidências empíricas que indicam que a validação cruzada com 10 partes atinge um bom equilíbrio entre a obtenção de estimativas confiáveis do desempenho do modelo e a eficiência computacional.
+
+Os fundamentos apresentados neste capítulo fornecem a base teórica necessária para a compreensão das técnicas de classificação de textos curtos, incluindo os conceitos de pré-processamento e tokenização. Com essa base teórica estabelecida, o próximo capítulo avança para a aplicação prática desses conceitos, detalhando a metodologia adotada para a experimentação, incluindo o design da pesquisa, a escolha das ferramentas e bibliotecas utilizadas, e o procedimento experimental. Essa transição é fundamental para contextualizar os métodos empíricos dentro do arcabouço teórico previamente discutido, garantindo uma abordagem científica rigorosa na avaliação dos algoritmos de classificação de textos curtos em português.
+
+\noindent
+Os fundamentos apresentados neste capítulo estabelecem a base teórica para a compreensão das técnicas de classificação de textos curtos. O próximo capítulo avança para a aplicação prática desses conceitos, detalhando a metodologia adotada para a experimentação, incluindo o design da pesquisa e o procedimento experimental. Essa transição é importante para contextualizar os métodos empíricos dentro do arcabouço teórico previamente discutido, garantindo uma abordagem científica rigorosa na avaliação dos algoritmos de classificação de textos curtos em português.
+
 

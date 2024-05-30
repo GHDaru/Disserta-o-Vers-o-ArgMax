@@ -1,18 +1,52 @@
 \chapter{Conclusão}
-% \section*{Conclusões e sugestões para trabalhos futuros}
+
+Neste estudo, investigou-se a eficácia de algoritmos simples de recuperação da informação, combinados com técnicas de pré-processamento e otimização de parâmetros, na classificação de descrições curtas de produtos em português. A análise fundamentou-se na hipótese de que tais algoritmos, quando devidamente ajustados, poderiam melhorar significativamente métricas de desempenho como precisão, acurácia, recall e F1-score.
+
+\section{Síntese dos Resultados}
+
+Os resultados apresentados no capítulo de resultados demonstraram que a combinação de métodos de vetorização (como TF e TF-IDF), aplicação de N-gramas e normalização L2 teve um impacto considerável no desempenho dos modelos. Em particular, o método Binary com N-Gram [1, 2] e sem normalização destacou-se, alcançando a maior acurácia (89.56\%) e F1 Score Macro (70.09\%). Da mesma forma, o método TFIDF com N-Gram [1, 2] e normalização L2 também apresentou desempenho robusto, confirmando a hipótese de que a combinação de técnicas apropriadas de pré-processamento e otimização de parâmetros pode efetivamente melhorar os resultados.
+
+\section{Conexão com as Hipóteses e Objetivos}
+
+Confirma-se a hipótese central do estudo, que postulava que algoritmos simples de recuperação da informação poderiam melhorar significativamente a precisão, acurácia, recall e F1-score na classificação de descrições curtas de produtos em português, pelos resultados obtidos. A análise detalhada dos métodos Argmax revelou que, ao aplicar técnicas de vetorização e normalização adequadas, foi possível alcançar melhorias substanciais nas métricas de desempenho.
+
+Atenderam-se aos objetivos específicos delineados na introdução:
+
+1. \textbf{Adaptação de métodos de recuperação da informação:} Adaptaram-se métodos como sacola de palavras, TF e TF-IDF para a classificação de descrições curtas de produtos.
+   
+2. \textbf{Avaliação de desempenho:} Demonstrou-se que algoritmos simples de recuperação da informação, como TF e TF-IDF, combinados com métricas de similaridade, são eficazes na classificação de textos curtos em português.
+
+3. \textbf{Impacto das técnicas de pré-processamento:} Revelou-se que a normalização L2 e a aplicação de N-gramas (particularmente bigramas) têm um impacto significativo na eficácia dos modelos.
+
+4. \textbf{Otimização de parâmetros:} Identificaram-se, através da validação cruzada e outras técnicas de ajuste, os parâmetros mais adequados para maximizar a acurácia e o F1-score macro dos algoritmos avaliados.
+
+5. \textbf{Métrica unificada:} Propôs-se e aplicou-se uma métrica unificada que combina acurácia e F1-score macro, permitindo uma comparação mais integrada e holística dos resultados.
+
+\section{Implicações e Contribuições}
+
+As principais contribuições deste estudo incluem uma análise aprofundada do desempenho de diferentes algoritmos de recuperação da informação na classificação de textos curtos em português e a apresentação de diretrizes sobre as técnicas de pré-processamento mais eficazes. Além disso, a adaptação de uma métrica unificada para avaliação de desempenho mostrou-se valiosa, proporcionando uma ferramenta adicional para futuras pesquisas na área.
+
+\section{Limitações e Trabalhos Futuros}
+
+Apesar dos resultados promissores, este estudo apresenta algumas limitações. A avaliação foi limitada a descrições curtas de produtos, o que pode não refletir a complexidade de outros tipos de textos em português. Além disso, a análise foi restrita a um conjunto específico de técnicas e parâmetros, sugerindo que futuros estudos poderiam explorar uma gama mais ampla de algoritmos e métodos de pré-processamento.
+
+Além disso, a não utilização de algoritmos de machine learning mais avançados é uma limitação significativa. Conforme apontado em um artigo publicado pelo próprio autor, a partir de uma base de desempenho de ~90\%, é possível aumentar significativamente a precisão utilizando técnicas mais sofisticadas de machine learning.
+
+Pesquisas futuras podem expandir o escopo desta investigação, aplicando os métodos avaliados a diferentes tipos de textos e explorando novas técnicas de recuperação da informação e aprendizado de máquina. Também seria valioso considerar a implementação de modelos mais avançados, como redes neurais profundas, e comparar seus desempenhos com os algoritmos mais simples analisados neste estudo.
+
+Em suma, este estudo fornece uma base sólida para o desenvolvimento de sistemas de classificação de texto eficientes e precisos, adaptados às particularidades do idioma português, contribuindo para o avanço do processamento de linguagem natural e das aplicações de recuperação da informação no contexto do e-commerce e além.
+
+% O texto tem como objetivo construir uma referência de acurácia para o conjunto de dados específico que contém descrições de produtos em Português. Os resultados mostram que o uso de algoritmos de classificação de texto para tarefas de classificação de texto curto em descrições de produtos em Português é uma maneira eficiente.
 
 
-O texto tem como objetivo construir uma referência de acurácia para o conjunto de dados específico que contém descrições de produtos em Português. Os resultados mostram que o uso de algoritmos de classificação de texto para tarefas de classificação de texto curto em descrições de produtos em Português é uma maneira eficiente.
+% O pipeline simples de pré-processamento (minúsculas, remoção de ruídos e tokenização unigrama por espaço), um saco de palavras e um algoritmo resultam em um método viável e rápido para classificar descrições de produtos.
+
+% Em comparação com diferentes métodos, o aprendizado de máquina apresenta os melhores valores para acurácia simples sobre métodos de recuperação de informações baseados em termos contados ou ponderados. Confirmando dados da literatura, as regressões logísticas demonstram o melhor desempenho sobre a acurácia e os melhores parâmetros encontrados foram C igual a 100, solver igual a sage, sem peso de classe e sem penalidade. Máquinas de vetores de suporte demonstraram um resultado melhorado sobre algoritmos de recuperação de informações e não superam a regressão logística. A melhor combinação de hiperparâmetros foi C igual a 100, kernel igual a sigmóide e peso de classe igual a balanceado.
 
 
-O pipeline simples de pré-processamento (minúsculas, remoção de ruídos e tokenização unigrama por espaço), um saco de palavras e um algoritmo resultam em um método viável e rápido para classificar descrições de produtos.
-
-Em comparação com diferentes métodos, o aprendizado de máquina apresenta os melhores valores para acurácia simples sobre métodos de recuperação de informações baseados em termos contados ou ponderados. Confirmando dados da literatura, as regressões logísticas demonstram o melhor desempenho sobre a acurácia e os melhores parâmetros encontrados foram C igual a 100, solver igual a sage, sem peso de classe e sem penalidade. Máquinas de vetores de suporte demonstraram um resultado melhorado sobre algoritmos de recuperação de informações e não superam a regressão logística. A melhor combinação de hiperparâmetros foi C igual a 100, kernel igual a sigmóide e peso de classe igual a balanceado.
+% Entre os métodos de recuperação de informações, argmaxtfidf e argmaxtfidf obtêm resultados semelhantes e argmaxtf obtém o pior resultado.
 
 
-Entre os métodos de recuperação de informações, argmaxtfidf e argmaxtfidf obtêm resultados semelhantes e argmaxtf obtém o pior resultado.
+% A validação cruzada com quatro dobras e mil amostras demonstra viabilidade para encontrar o melhor hiperparâmetro. E a validação cruzada com 30 dobras apresenta uma boa estatística e um baixo desvio para determinar, em média, o melhor algoritmo.
 
-
-A validação cruzada com quatro dobras e mil amostras demonstra viabilidade para encontrar o melhor hiperparâmetro. E a validação cruzada com 30 dobras apresenta uma boa estatística e um baixo desvio para determinar, em média, o melhor algoritmo.
-
-Como sugestão para trabalhos futuros, sugere-se expandir as técnicas de pré-processamento, como adicionar TAGS, limpar e nomear entidades e usar outras técnicas de incorporação de palavras, como tfidf, tfnorm, word2vec, LDA e FastText. Tokenizar usando bigrama ou skip-gram, tratar palavras fora do vocabulário e aplicar técnicas de seleção variável, como Lasso. Aplicar técnicas de redução de dimensionalidade, como PCA. Aplicar outras técnicas de aprendizado de máquina não apresentadas aqui e, finalmente, aplicar técnicas de balanceamento de amostras.
+% Como sugestão para trabalhos futuros, sugere-se expandir as técnicas de pré-processamento, como adicionar TAGS, limpar e nomear entidades e usar outras técnicas de incorporação de palavras, como tfidf, tfnorm, word2vec, LDA e FastText. Tokenizar usando bigrama ou skip-gram, tratar palavras fora do vocabulário e aplicar técnicas de seleção variável, como Lasso. Aplicar técnicas de redução de dimensionalidade, como PCA. Aplicar outras técnicas de aprendizado de máquina não apresentadas aqui e, finalmente, aplicar técnicas de balanceamento de amostras.

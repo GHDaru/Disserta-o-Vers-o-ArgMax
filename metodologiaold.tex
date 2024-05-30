@@ -81,8 +81,8 @@ A estrutura hierárquica pode ser resumida na Figura \ref{fig:hierarquia}.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{images/hierarquia.png}
-    \label{fig:hierarquia}
-    \caption{hierarquia e quantidade de elementos distintos e descrições em cada segmento}
+    \caption{Hierarquias}
+    \label{fig:hierarquia e quantidade de elementos distintos e descrições em cada segmento}
 \end{figure}
 
 
@@ -98,7 +98,7 @@ Inicia-se a análise pela distribuição das descrições pelas categorias utili
     \label{fig:histdistclasses}
 \end{figure}
 
-Categorias como "BISCOITO" e "IOGURTE" lideram em quantidade de itens, refletindo as tendências de consumo. A Figura \ref{fig:grafico_barras_top10} exibe as 10 categorias com a maior quantidade de itens classificados.  Esta concentração denota o desbalanceamento e a dificuldade que se tem em tarefas de classificação.
+Categorias como "BISCOITO" e "IOGURTE" lideram em quantidade de itens, refletindo as tendências de consumo. A Figura , Figura \ref{fig:grafico_barras_top10} exibe as 10 categorias com a maior quantidade de itens classificados.  Esta concentração denota o desbalanceamento e a dificuldade que se tem em tarefas de classificação.
 
  \begin{figure}[H]
     \centering
@@ -111,7 +111,7 @@ Categorias como "BISCOITO" e "IOGURTE" lideram em quantidade de itens, refletind
 Nesta seção é apresentada, como as descrições de produto se comportam nos varejos em relação a dois atributos importantes.  A quantidade de caracteres e quantidade de palavras.  Para definir uma palavra, realiza-se a segmentação da descrição por espaço.
 
 \subsubsection{Distribuição de Caracteres por Descrição}
-A Figura \ref{fig:distcaracteres} demonstra que a maioria das descrições contém entre 20 a 35 caracteres, indicando uma preferência por descrições breves, mas informativas. Este padrão sugere que as descrições são projetadas para se encaixar dentro de cupons fiscais.  É interessante observar que não há nas descrições do dataset nenhum registro com mais de 50 caracteres, mostrando um padrão por descrições de até 50 caracteres.
+A Figura \ref{fig:distcaracteres} demonstra que maioria das descrições contém entre 20 a 35 caracteres, indicando uma preferência por descrições breves, mas informativas. Este padrão sugere que as descrições são projetadas para se encaixar dentro de cupons fiscais.  É interessante observar que não há nas descrições do dataset nenhum registro com mais de 50 caracteres, mostrando um padrão por descrições de até 50 caracteres.
 
 \begin{figure}[H]
     \centering
@@ -135,16 +135,16 @@ A Figura \ref{fig:distpalavras} apresenta a distribuição por palavra. Esta mos
 Conforme discutido na seção \ref{subsec:preprocessamento}, a normalização, incluindo a remoção de acentos e a conversão para letras minúsculas, é adotada para uniformizar as variações linguísticas. Esta abordagem facilita a análise dos dados, alinhando-se com as práticas padrão em processamento de linguagem natural.  Diversas técnicas são apresentadas, mas as de maior impacto são a \textbf{normalização e conversão para minúsculas}.  As demais, conforme \cite{naseem2021survey}, acabam não impactando significativamente no resultado final.  Cabe ressaltar que as descrições de produto não apresentam verbos e variantes com prefixo e sufixo.
 
 \subsection{Tokenização}
-A tokenização é realizada para decompor os textos em unidades menores, ou tokens. Neste trabalho, serão exploradas representações baseadas em unigramas e bigramas. Esta decisão é fundamentada pela necessidade de capturar tanto a frequência de palavras individuais (\textit{unigramas}) quanto as relações entre palavras adjacentes (\textit{bigramas}), conforme destacado na seção \ref{subsec:tokenizacao}.
+A tokenização é realizada para decompor os textos em unidades menores, ou tokens. Neste trabalho, serão exploradas representações baseadas em unigramas, bigramas e seqgramas. Esta decisão é fundamentada pela necessidade de capturar tanto a frequência de palavras individuais (\textit{unigramas}) quanto as relações entre palavras adjacentes (\textit{bigramas}) e sequências de palavras (\textit{seqgramas}), conforme destacado na seção \ref{subsec:tokenizacao}.
 
 \subsection{Vetorização}
-Utilizam-se as técnicas de Bag of Words (BoW), Term Frequency (TF), e Term Frequency-Inverse Document Frequency (TFIDF) para transformar os textos tokenizados em representações vetoriais. Estas técnicas são aplicadas a unigramas e bigramas, tanto em formas normalizadas quanto não-normalizadas, para capturar a importância relativa das palavras e suas relações contextuais.  Estas técnicas são descritas na seção \ref{subsec:representacaonumerica} sobre representação numérica.  A escolha se deve a ser os principais modelos utilizados pelas literaturas.
+Utilizam-se as técnicas de Bag of Words (BoW), Term Frequency (TF), e Term Frequency-Inverse Document Frequency (TFIDF) para transformar os textos tokenizados em representações vetoriais. Estas técnicas são aplicadas a unigramas, bigramas e seqgramas, tanto em formas normalizadas quanto não-normalizadas, para capturar a importância relativa das palavras e suas relações contextuais.  Estas técnicas são descritas na seção \ref{subsec:representacaonumerica} sobre representação numérica.  A escolha se deve a ser os principais modelos utilizados pelas literaturas.
 
 São avaliadas as representações vetoriais em suas formas normalizadas e não-normalizadas. A normalização dos vetores de características visa a padronização à uma escala comum, facilitando a integração de diferentes tipos de características e a aplicação de algoritmos de aprendizado de máquina.
 
 \subsection{Seleção de Modelos}
 
-Com base nos fundamentos apresentados anteriormente, a seleção de modelos para este estudo foi conduzida considerando-se as características distintas da classificação de textos curtos. Identificou-se que a natureza concisa dos dados demanda métodos capazes de extrair eficientemente a informação semântica limitada. Para fins do objetivo deste trabalhos são avaliados os métodos provenientes das técnicas e teorias da recuperação da informação.
+Com base nos fundamentos apresentados anteriormente, a seleção de modelos para este estudo foi conduzida considerando-se as características distintas da classificação de textos curtos. Identificou-se que a natureza concisa dos dados demanda métodos capazes de extrair eficientemente a informação semântica limitada. Portanto, optou-se por avaliar tanto métodos de recuperação de informação, com ênfase no método baseado em similaridade, quanto modelos tradicionais de aprendizado de máquina, incluindo Naive Bayes (NB), Árvores de Decisão (DT), Máquinas de Vetores de Suporte (SVM), k-Nearest Neighbors (KNN) e Regressão Logística (RL).
 
 \subsubsection{Argmax da Similaridade}
 
@@ -165,41 +165,27 @@ A adoção de métodos baseados em argmax para a classificação de texto neste 
     \item Limitação em Contextos Complexos: Dificuldade em capturar nuances em textos com múltiplas interpretações ou categorias próximas.
 \end{itemize}
 
-\paragraph{Considerações}
+\subsubsection{Modelos Tradicionais}
+\begin{itemize}
+    \item \textbf{Naive Bayes (NB):} Selecionado pela sua eficiência e simplicidade, reconhecido por sua robustez na classificação de texto.
+    
+    \item \textbf{Árvores de Decisão (DT):} Escolhidas pela capacidade de abordar características não lineares e pela facilidade de interpretação dos modelos gerados.
+    
+    \item \textbf{Máquinas de Vetores de Suporte (SVM):} A eficácia em espaços de alta dimensão motivou sua seleção.
+    
+    \item \textbf{k-Nearest Neighbors (KNN):} A simplicidade e eficácia em classificações que não demandam modelos complexos foram as principais razões para sua escolha.
+    
+    \item \textbf{Regressão Logística (RL):} Incluída por sua habilidade em fornecer probabilidades de classe, útil para classificar descrições ambíguas.
+\end{itemize}
 
-É utilizada a técnica de geração de documento conforme destacada na seção de fundamentos.
+\paragraph{Considerações}
+A exclusão de modelos de aprendizado profundo, técnicas de bagging e boosting, bem como modelos baseados em word embeddings, foi uma decisão intencional, motivada pela limitação de escopo deste trabalho. Esta pesquisa estabelece uma fundação inicial, focando em métodos tradicionais e de recuperação de informação, pavimentando o caminho para futuros estudos que possam explorar métodos mais avançados e contemporâneos. A diversidade dos modelos selecionados permite uma avaliação abrangente das técnicas de classificação de texto, maximizando as chances de identificar o método mais eficaz para o conjunto de dados específico.
 
 \subsection{Métricas de Avaliação}
 
 O principal objetivo das métricas de avaliação é fornecer um quadro confiável para a análise do desempenho dos modelos. Procurou-se selecionar métricas que considerassem tanto a eficácia geral do modelo quanto sua capacidade de tratar classes de maneira equitativa, evitando viés em favor das classes mais representativas no conjunto de dados.  Desta forma, pode-se resumir o objetivo em \textit{abrangência} e \textit{equidade}.  Segundo Tharwat (2018) e Grandini et al. (2020), as métricas são fundamentais para compreender o desempenho dos modelos em contextos multiclasse, onde a complexidade e o desbalanceamento entre classes apresentam desafios significativos.
 Para satisfazer estes dois critérios foram escolhidas a \textbf{F1-Score Macro} e \textbf{Acurácia}. Elas juntas proporcionam uma visão equilibrada e abrangente do desempenho dos modelos.
 Quanto a \textbf{abrangência} a acurácia fornece uma visão geral do desempenho enquanto que para a \textbf{equidade} A F1-score macro, ao calcular a média dos F1-Scores de todas as classes, dá igual peso a cada uma delas, favorecendo uma avaliação justa independentemente do tamanho da classe.
-
-\subsubsection{Definição de Novas Métricas de Desempenho}
-
-Diante da necessidade de avaliar de maneira integrada o desempenho dos modelos de classificação, especialmente em contextos de classes desbalanceadas, propõe-se duas novas métricas: o Índice de Eficiência Geral (IEG) e o Índice de Eficiência Geral Estabilizada (IEGE). Estas métricas visam proporcionar uma avaliação unificada que considere tanto a acurácia quanto o F1 Score Macro, além da robustez do modelo, medida pelo Coeficiente de Variação (CV).  O objetivo das duas medidas é condensar o desempenho dos modelos tanto de maneira global, medido pela acurácio, tanto pelo desempenho pontual, medido pela F1ScoreMacro.  O segundo índice acrescenta uma ponderação em relação ao coeficiente de variação de forma a privilegiar modelos que mantenham sua capacidade de generalização mesmo sobre amostras diferentes.
-
-\subsubsection{Índice de Eficiência Geral (IEG)} \\
-
-O Índice de Eficiência Geral (IEG) é definido como a distância euclidiana entre a acurácia e o F1 Score Macro no espaço bidimensional, normalizado pela raiz quadrada de 2, para que os valores estejam entre 0 e 1. A equação para o IEG é dada por:
-
-\begin{equation}
-IEG = \frac{\sqrt{(Acuracia)^2 + (F1ScoreMacro)^2}}{\sqrt{2}}
-\end{equation}
-
-onde Acurácia e F1ScoreMacro são os valores decimais dessas métricas (isto é, valores percentuais divididos por 100).
-
-\subsubsection{Índice de Eficiência Geral Estabilizada (IEGE)}  
-
-O Índice de Eficiência Geral Estabilizada (IEGE) expande o conceito do IEG ao incorporar um fator penalizador baseado no Coeficiente de Variação (CV) das métricas, refletindo a robustez do modelo. A equação para o IEGE é:
-
-\begin{equation}
-IEE-Stab = \frac{\sqrt{(Acurácia \cdot (1 - CV))^2 + (F1ScoreMacro \cdot (1 - CV))^2}}{\sqrt{2}}
-\end{equation}
-
-Assim, o IEGE não apenas mede o desempenho do modelo em termos de acurácia e F1 Score Macro, mas também ajusta esses valores com base na consistência do modelo, oferecendo uma perspectiva mais abrangente sobre sua eficácia e confiabilidade.
-
-Estas métricas foram aplicadas aos resultados obtidos com diferentes configurações dos métodos de classificação Argmax, permitindo uma comparação direta entre eles, considerando não só o desempenho, mas também a estabilidade dos modelos em diferentes execuções.
 
 \subsection{Configurações de Treinamento}
 
@@ -242,7 +228,110 @@ ARGMAX2TF            & bigram      & TF      &               \\ \hline
 ARGMAX2TFNORM        & bigram      & TF      & Normalizado   \\ \hline
 ARGMAX2TFIDF         & bigram      & TFIDF   &               \\ \hline
 ARGMAX2TFIDFNORM     & bigram      & TFIDF   & Normalizado   \\ \hline
+ARGMAXSBI            & seqgram     & Binário &               \\ \hline
+ARGMAXSBINORM        & seqgram     & Binário & Normalizado   \\ \hline
+ARGMAXSTF            & seqgram     & TF      &               \\ \hline
+ARGMAXSTFNORM        & seqgram     & TF      & Normalizado   \\ \hline
+ARGMAXSTFIDF         & seqgram     & TFIDF   &               \\ \hline
+ARGMAXSTFIDFNORM     & seqgram     & TFIDF   & Normalizado   \\ \hline
 \end{tabular}
 \end{table}
 
-Após a descrição detalhada da metodologia empregada, incluindo o design experimental, pré-processamento, tokenização, vetorização, seleção de modelos e métricas de avaliação, a próxima etapa consiste em apresentar os resultados obtidos a partir da aplicação dos métodos de classificação de texto. Esta transição marca a mudança do planejamento e preparação para a análise empírica dos dados. A seguir, serão discutidos os resultados dos experimentos conduzidos, focando na eficácia das diferentes configurações e algoritmos na classificação das descrições de produtos em português. Esta análise permite uma avaliação crítica do desempenho dos modelos, conforme as métricas estabelecidas, e possibilita a proposição de novas métricas de desempenho para uma compreensão mais abrangente da eficácia das abordagens testadas.
+\subsubsection{Modelos de Aprendizado de Máquina}
+
+O processo de ajuste fino para os modelos de aprendizado de máquina específicos será detalhado a seguir, focando nos hiperparâmetros chave de cada um:
+
+\paragraph{Máquina de Vetores de Suporte (SVM)}
+
+A Máquina de Vetores de Suporte (SVM) é um modelo de aprendizado de máquina baseado em otimização, projetado para encontrar um hiperplano que minimize a distância até os vetores mais próximos de classes distintas, conhecidos como vetores de suporte. A formulação matemática do SVM é expressa pela seguinte equação, adaptada de \cite{pedregosa2011scikit}:
+
+\begin{equation}
+\label{eq6}
+\begin{aligned}\min_ {w, b, \zeta} \frac{1}{2} w^T w + C \sum_{i=1}^{n} \zeta_i\\
+\begin{split}\textrm {sujeito a} \\
+& y_i (w^T \phi (x_i) + b) \geq 1 - \zeta_i,\\
+& \zeta_i \geq 0, i=1, ..., n\end{split}
+\end{aligned}
+\end{equation}
+
+Durante o processo de ajuste fino, os seguintes hiperparâmetros do SVM serão avaliados:
+
+\begin{itemize}
+    \item \textbf{Funções de Kernel:} Diferentes funções de kernel, incluindo linear, polinomial, radial (RBF) e sigmoide, serão testadas. O kernel transforma o espaço de entrada em um espaço de maior dimensão onde é possível encontrar um hiperplano de separação linear.
+    \item \textbf{C (Parâmetro de Regularização):} O parâmetro C, que controla o trade-off entre a maximização da margem e a minimização do erro de classificação, será ajustado. Valores mais altos de C indicam uma menor tolerância a erros de classificação.
+    \item \textbf{Peso da Classe:} Este hiperparâmetro ajusta o peso das classes, sendo particularmente útil em situações de desbalanceamento de classes.
+    \item \textbf{Grau (para Kernel Polinomial):} Quando o kernel polinomial é selecionado, o grau do polinômio representa um hiperparâmetro crítico que será ajustado.
+\end{itemize}
+
+A seleção e o ajuste desses hiperparâmetros serão realizados por meio de técnicas como busca em grade (Grid Search) ou busca aleatória (Random Search), com o objetivo de identificar a configuração que maximiza a precisão do modelo SVM no conjunto de dados utilizado neste estudo.
+
+\paragraph{Regressão Logística}
+
+A Regressão Logística (RL) é empregada como um modelo de classificação no contexto de aprendizado de máquina supervisionado. A formulação matemática da RL, adaptada de \cite{pedregosa2011scikit}, é apresentada abaixo:
+
+\begin{equation}
+\label{eq5}
+\min_{w, c} \frac{1 - \rho}{2}w^T w + \rho \|w\|_1 + \\ C \sum_{i=1}^n \\ \log\left (e^{-y_i (X_i^T w + c)} + 1\right )
+\end{equation}
+
+Durante o ajuste fino, os seguintes hiperparâmetros da Regressão Logística serão explorados:
+
+\begin{itemize}
+    \item \textbf{Solver:} O método de otimização a ser utilizado na minimização da função de custo. O solver "saga" foi escolhido por sua eficiência em conjuntos de dados de grande escala.
+    \item \textbf{Penalidade (Penalty):} Representa o tipo de regularização aplicada ao modelo. Serão testadas as opções "l1" (norma L1), "l2" (norma L2) e "elasticnet", que é uma combinação linear das penalidades L1 e L2. A relevância de cada tipo de penalidade será determinada pelo ajuste do hiperparâmetro \(\rho\) (l1\_ratio) no caso de "elasticnet".
+    \item \textbf{C (Parâmetro de Regularização):} Controla a força da regularização inversamente. Valores mais altos de C correspondem a uma regularização menos rigorosa. Serão avaliados diferentes valores de C para identificar o equilíbrio ideal entre bias e variância.
+    \item \textbf{Peso da Classe (Class Weight):} Este hiperparâmetro ajusta os pesos das classes no cálculo da função de custo, sendo particularmente útil em situações com classes desbalanceadas. A opção "balanceada" será comparada ao cenário onde todas as classes têm o mesmo peso.
+\end{itemize}
+
+O processo de ajuste desses hiperparâmetros visa otimizar o desempenho da Regressão Logística no conjunto de dados estudado, utilizando técnicas como busca em grade (Grid Search) para explorar o espaço de hiperparâmetros de forma sistemática.
+
+\paragraph{Árvores de Decisão}
+
+As Árvores de Decisão são modelos de aprendizado de máquina supervisionado amplamente utilizados para tarefas de classificação e regressão. Esses modelos são preferidos por sua facilidade de interpretação, a capacidade de lidar com dados não lineares e a não necessidade de normalização dos dados. A formulação matemática específica para uma árvore de decisão é mais intuitiva, focando na divisão do espaço de dados em regiões homogêneas com base nos valores dos atributos.
+
+Durante o processo de ajuste fino, os seguintes hiperparâmetros das Árvores de Decisão serão avaliados:
+
+\begin{itemize}
+    \item \textbf{Critério:} O critério utilizado para medir a qualidade de uma divisão. Os critérios mais comuns são "gini" para a impureza de Gini e "entropy" para o ganho de informação (entropia), sendo ambos avaliados para determinar qual oferece o melhor desempenho para o modelo.
+    \item \textbf{Profundidade Máxima da Árvore (max\_depth):} A profundidade máxima da árvore será ajustada para controlar a complexidade do modelo, prevenindo overfitting. Serão testados valores variados para encontrar o equilíbrio ideal entre bias e variância.
+    \item \textbf{Número Mínimo de Amostras para Dividir um Nó (min\_samples\_split):} Este hiperparâmetro determina o número mínimo de amostras necessárias para dividir um nó interno. Valores diferentes serão explorados para otimizar a capacidade da árvore de generalizar bem para dados não vistos.
+    \item \textbf{Número Mínimo de Amostras em um Nó Folha (min\_samples\_leaf):} O número mínimo de amostras requeridas para estar em um nó folha. Ajustar esse parâmetro ajuda a suavizar o modelo, especialmente em casos de dados ruidosos.
+\end{itemize}
+
+O ajuste desses hiperparâmetros será realizado por meio de técnicas de busca, como a busca em grade (Grid Search) ou busca aleatória (Random Search), com o objetivo de identificar a configuração que maximiza a precisão da árvore de decisão no conjunto de dados utilizado neste estudo.
+
+\paragraph{k-Nearest Neighbors (KNN)}
+
+O k-Nearest Neighbors (KNN) é um algoritmo simples, porém poderoso, utilizado tanto para classificação quanto para regressão. Baseia-se no princípio de que as amostras mais próximas no espaço de características tendem a pertencer à mesma classe. O KNN é particularmente apreciado por sua facilidade de implementação e sua eficácia em uma ampla gama de problemas.
+
+Durante o processo de ajuste fino, os seguintes hiperparâmetros do KNN serão avaliados:
+
+\begin{itemize}
+    \item \textbf{Número de Vizinhos (n\_neighbors):} O número de vizinhos a considerar determina a fronteira de decisão do KNN. Serão testados diferentes valores para encontrar o número ótimo de vizinhos que maximiza a precisão do modelo.
+    \item \textbf{Peso dos Vizinhos (weights):} O peso atribuído aos vizinhos pode ser uniforme, onde todos os vizinhos contribuem igualmente, ou baseado na distância, onde vizinhos mais próximos têm uma influência maior na decisão. Ambas as opções serão exploradas para determinar qual oferece o melhor desempenho.
+    \item \textbf{Métrica de Distância (metric):} A escolha da métrica de distância (como distância euclidiana, manhattan, minkowski, ou hamming) é crucial para o desempenho do KNN. Diferentes métricas serão avaliadas para identificar a mais adequada para o conjunto de dados em questão.
+    \item \textbf{Algoritmo para Computação da Distância (algorithm):} As opções incluem 'ball\_tree', 'kd\_tree', 'brute', e 'auto', influenciando a eficiência do cálculo das distâncias. O algoritmo mais eficiente para o nosso conjunto de dados será identificado mediante experimentação.
+\end{itemize}
+
+O processo de ajuste desses hiperparâmetros será conduzido utilizando técnicas como a busca em grade (Grid Search) ou busca aleatória (Random Search), visando encontrar a configuração que oferece o melhor equilíbrio entre precisão e eficiência computacional para o modelo KNN no conjunto de dados utilizado neste estudo.
+
+\paragraph{Naive Bayes}
+
+O Naive Bayes é um classificador probabilístico baseado no teorema de Bayes, com a "ingênua" suposição de independência entre os preditores. Apesar de sua simplicidade, o Naive Bayes pode ser surpreendentemente eficaz e é frequentemente utilizado em tarefas de classificação de texto e filtragem de spam.
+
+No ajuste fino do modelo Naive Bayes, focaremos na seleção do tipo de modelo Naive Bayes apropriado para o nosso conjunto de dados, uma vez que diferentes variantes são mais adequadas para diferentes tipos de distribuição de dados. Os seguintes hiperparâmetros e variantes do modelo serão avaliados:
+
+\begin{itemize}
+    \item \textbf{Tipo de Modelo Naive Bayes:} Dependendo da natureza do conjunto de dados, diferentes versões do Naive Bayes serão testadas, incluindo:
+    \begin{itemize}
+        \item Gaussian Naive Bayes: Ideal para características com distribuição normal.
+        \item Multinomial Naive Bayes: Adequado para dados distribuídos multinomialmente, como a contagem de palavras em textos.
+        \item Bernoulli Naive Bayes: Utilizado para características binárias/multivariáveis.
+        \item Complement Naive Bayes: Uma adaptação do Multinomial Naive Bayes que é particularmente adequada para conjuntos de dados desbalanceados.
+    \end{itemize}
+    \item \textbf{Suavização Laplaciana (alpha):} Para modelos como Multinomial e Bernoulli Naive Bayes, a suavização Laplaciana (ou aditiva) é aplicada para lidar com o problema de probabilidade zero. O valor de $\alpha$ será ajustado para otimizar o desempenho do modelo.
+\end{itemize}
+
+A seleção do modelo e o ajuste do hiperparâmetro de suavização serão realizados por meio de validação cruzada, com o objetivo de identificar a configuração que oferece a melhor acurácia para a classificação no conjunto de dados estudado.
+
+

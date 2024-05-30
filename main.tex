@@ -23,7 +23,7 @@
 
 \begin{document}
 
-\title{\textbf{Classificação de Descrições de Produtos em Português: Avaliação de Técnicas de Recuperação da Informação e o Impacto de seus Parâmetros}}
+\title{\textbf{Categorização de Produtos em E-commerce: Avaliação do Método Argmax para Classificação de Descrições Curtas em Português}}
 \author{Gilsiley Henrique Darú}
 
 \date{\today}
@@ -31,7 +31,7 @@
 
 \chapter*{Resumo}
 
-	A crescente demanda por classificação de informações baseada em conteúdo na era das mídias sociais e do comércio eletrônico tem levado à necessidade de classificação automatizada de produtos com base nas suas descrições. Este estudo tem como objetivo avaliar várias técnicas para essa tarefa, com ênfase em descrições escritas em português. Uma pipeline é implementada para pré-processar os dados, incluindo conversão para minúsculas, remoção de acentos e separação por espaço de unigramas. Em seguida, o método sacola de palavras é usado para converter o texto em dados numéricos e cinco técnicas de classificação são aplicadas: argmaxtf, argmaxtfnorm, argmaxtfidf proveniente da recuperação de informação.           
+A crescente demanda por sistemas automatizados de classificação de produtos em plataformas de e-commerce impulsionou a busca por soluções eficientes para a categorização de produtos, especialmente em português. Este estudo investiga a adaptação de técnicas de recuperação da informação clássicas – sacola de palavras, TF, e TF-IDF – para a tarefa de classificar descrições curtas de produtos. A pesquisa avalia diferentes estratégias de pré-processamento e tokenização, incluindo a análise do impacto da normalização L2. Os resultados demonstraram que métodos simples de recuperação da informação, quando combinados com pré-processamento adequado e otimização de parâmetros, podem alcançar desempenho significativamente superior. Para avaliar abrangentemente o desempenho e a robustez dos modelos, foram propostas novas métricas – Índice de Eficiência Geral (IEG) e Índice de Eficiência Geral Estabilizado (IEGE). Essas métricas combinam a acurácia e o F1-score macro, oferecendo uma avaliação mais completa do desempenho, especialmente em cenários de desbalanceamento de classes. Este trabalho contribui com insights valiosos para o desenvolvimento de sistemas de categorização de produtos mais eficientes em plataformas de e-commerce em português.         
 				\vspace{0.15cm}
         \noindent \textbf{Palavras-chave:} aprendizado de máquina; processamento de linguagem natural; classificação de texto; descrição do produto; texto curto; sacola de palavras; frequencia de termos; frequencia inversa de documentos
 

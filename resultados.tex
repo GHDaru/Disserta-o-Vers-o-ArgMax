@@ -2,15 +2,11 @@
 
 \section{Introdução aos Resultados}
 
-Neste capítulo, os resultados obtidos a partir da aplicação dos métodos de classificação de texto analisados neste estudo são apresentados, incluindo tanto técnicas baseadas em Argmax quanto diversos métodos de aprendizado de máquina. A avaliação do desempenho desses métodos é considerada fundamental para compreender sua eficácia na classificação de descrições de produtos em português, utilizando o dataset RETAILPRODUCTDESCRIPTION-PTBR especialmente preparado para este fim.
+Neste capítulo, os resultados obtidos a partir da aplicação dos métodos de classificação de texto analisados neste estudo são apresentados, incluindo tanto técnicas baseadas em Argmax. A avaliação do desempenho desses métodos é considerada referencial para compreender sua eficácia na classificação de descrições de produtos em português, utilizando o dataset RETAILPRODUCTDESCRIPTION-PTBR especialmente preparado para este fim.
 
 Inicialmente, uma análise detalhada dos resultados obtidos com o método Argmax é apresentada, explorando diferentes configurações de vetorização, tokenização e normalização, e como estas são vistas para afetar o desempenho do método em termos de acurácia e F1-Score Macro.
 
-Em seguida, procede-se à análise detalhada de cada método de aprendizado de máquina empregado neste estudo, incluindo SVM, Árvores de Decisão, Naive Bayes, k-Nearest Neighbors e Regressão Logística. Para cada um desses métodos, o capítulo inicia com a descrição do processo de ajuste fino (fine-tuning) dos hiperparâmetros, visando otimizar o desempenho em termos de acurácia e F1-Score Macro.
-
-Após a fase de ajuste fino, os resultados gerais alcançados são apresentados, focando no desempenho otimizado de cada método e como as diferentes configurações impactam esse desempenho.
-
-Finalmente, uma comparação geral dos resultados de todos os métodos analisados é realizada, oferecendo uma visão integrada do desempenho relativo de cada técnica. Esta seção de resultados gerais visa identificar os métodos mais promissores para a classificação de textos curtos em português, considerando as particularidades do dataset em estudo. Discussões sobre as limitações dos resultados, considerações para a interpretação dos dados e sugestões para pesquisas futuras também são abordadas, fornecendo um panorama completo dos achados e sua implicação para o campo do processamento de linguagem natural e aprendizado de máquina.
+Finalmente, uma comparação geral dos resultados de todos os métodos analisados é realizada, oferecendo uma visão integrada do desempenho relativo de cada técnica. Esta seção de resultados gerais visa identificar os métodos mais promissores provenientes das técnicas base da recuperação da informação para a classificação de textos curtos em português, considerando as particularidades do dataset em estudo. Discussões sobre as limitações dos resultados, considerações para a interpretação dos dados e sugestões para pesquisas futuras também são abordadas, fornecendo um panorama dos achados e sua implicação para o campo do processamento de linguagem natural e aprendizado de máquina.
 
 \subsection{Avaliação do Método Argmax}
 
@@ -340,33 +336,9 @@ Neste segmento, são resumidos os principais achados decorrentes da avaliação 
     \end{itemize}
 \end{itemize}
 
-\section{Definição de Novas Métricas de Desempenho}
 
-Diante da necessidade de avaliar de maneira integrada o desempenho dos modelos de classificação, especialmente em contextos de classes desbalanceadas, propõe-se duas novas métricas: o Índice de Eficiência Geral (IEG) e o Índice de Eficiência Geral Estabilizada (IEGE). Estas métricas visam proporcionar uma avaliação unificada que considere tanto a acurácia quanto o F1 Score Macro, além da robustez do modelo, medida pelo Coeficiente de Variação (CV).  O objetivo das duas medidas é condensar o desempenho dos modelos tanto de maneira global, medido pela acurácio, tanto pelo desempenho pontual, medido pela F1ScoreMacro.  O segundo índice acrescenta uma ponderação em relação ao coeficiente de variação de forma a privilegiar modelos que mantenham sua capacidade de generalização mesmo sobre amostras diferentes.
 
-\subsection{Índice de Eficiência Geral (IEG)}
-
-O Índice de Eficiência Geral (IEG) é definido como a distância euclidiana entre a acurácia e o F1 Score Macro no espaço bidimensional, normalizado pela raiz quadrada de 2, para que os valores estejam entre 0 e 1. A equação para o IEG é dada por:
-
-\begin{equation}
-IEG = \frac{\sqrt{(Acuracia)^2 + (F1ScoreMacro)^2}}{\sqrt{2}}
-\end{equation}
-
-onde Acurácia e F1ScoreMacro são os valores decimais dessas métricas (isto é, valores percentuais divididos por 100).
-
-\subsection{Índice de Eficiência Geral Estabilizada (IEGE)}
-
-O Índice de Eficiência Geral Estabilizada (IEGE) expande o conceito do IEG ao incorporar um fator penalizador baseado no Coeficiente de Variação (CV) das métricas, refletindo a robustez do modelo. A equação para o IEGE é:
-
-\begin{equation}
-IEE-Stab = \frac{\sqrt{(Acurácia \cdot (1 - CV))^2 + (F1ScoreMacro \cdot (1 - CV))^2}}{\sqrt{2}}
-\end{equation}
-
-Assim, o IEGE não apenas mede o desempenho do modelo em termos de acurácia e F1 Score Macro, mas também ajusta esses valores com base na consistência do modelo, oferecendo uma perspectiva mais abrangente sobre sua eficácia e confiabilidade.
-
-Estas métricas foram aplicadas aos resultados obtidos com diferentes configurações dos métodos de classificação Argmax, permitindo uma comparação direta entre eles, considerando não só o desempenho, mas também a estabilidade dos modelos em diferentes execuções.
-
-\subsubsection{Aplicação e Resultados}
+\subsubsection{Aplicação das Métricas Propostas e Resultados}
 
 As métricas propostas foram aplicadas ao conjunto de variações dos métodos baseados em argmax, cujos resultados são apresentados na Tabela \ref{tab:Índice de Eficiência Geral (IEG) e Estabilizado (IEGE)}. Observa-se que essas métricas fornecem um índice unificado capaz de refletir eficientemente o desempenho dos métodos tanto em aspectos gerais quanto específicos. Notavelmente, a análise revela uma similaridade nos resultados entre o IEG e o IEGE, o que pode ser atribuído à pouca variação nos coeficientes de variação entre os diferentes métodos avaliados. Essa característica sublinha a possibilidade de classificar os métodos desde a melhor até a pior configuração de maneira consistente, corroborando os resultados observados em diversas representações gráficas neste estudo.
 
